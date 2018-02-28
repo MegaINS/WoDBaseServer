@@ -1,0 +1,100 @@
+[21:52:17:027] [main/INFO]: Start GameLogicHandler
+[21:52:17:036] [main/INFO]: Load mobs
+[21:52:17:486] [main/INFO]: Load stores
+[21:52:17:567] [main/INFO]: Load locations
+[21:52:17:576] [main/INFO]: Start NetworkSystem
+[21:52:23:890] [nioEventLoopGroup-0-0/INFO]: Соединение установлено
+[21:52:23:920] [nioEventLoopGroup-0-1/INFO]: Decoder HANDSHAKING, packet CHandshake, id 0, size 3
+[21:52:23:921] [nioEventLoopGroup-0-1/INFO]: Connect Battle server
+[21:52:32:815] [nioEventLoopGroup-0-3/INFO]: Соединение установлено
+[21:52:32:855] [nioEventLoopGroup-0-3/INFO]: Decoder HANDSHAKING, packet CHandshake, id 0, size 3
+[21:52:32:855] [nioEventLoopGroup-0-3/INFO]: Decoder LOGIN, packet CPacketLoginStart, id 0, size 22
+[21:52:32:862] [pool-2-thread-10/INFO]: Start initialize player id=1
+[21:52:32:862] [nioEventLoopGroup-0-3/INFO]: Encoder LOGIN, packet SPacketLoginSuccess, id 1, size 2
+[21:52:32:863] [pool-2-thread-10/INFO]: Load player id=1
+[21:52:32:878] [pool-2-thread-10/INFO]: End initialize player id=1 name=Test
+[21:52:32:884] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketPlayerInfo, id 1, size 24
+[21:52:32:886] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketLocInfo, id 2, size 160
+[21:52:32:887] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketInventory, id 3, size 60
+[21:52:32:888] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketBody, id 4, size 426
+[21:52:40:047] [nioEventLoopGroup-0-5/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[21:52:40:050] [nioEventLoopGroup-0-5/INFO]: Encoder PLAY, packet SPacketLocInfo, id 2, size 92
+[21:52:41:483] [nioEventLoopGroup-0-0/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[21:52:41:485] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketLocInfo, id 2, size 160
+[21:52:42:939] [nioEventLoopGroup-0-0/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[21:52:42:940] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketLocInfo, id 2, size 83
+[21:52:44:053] [nioEventLoopGroup-0-0/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[21:52:44:054] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketLocInfo, id 2, size 160
+[21:52:44:639] [nioEventLoopGroup-0-3/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[21:52:44:640] [nioEventLoopGroup-0-3/INFO]: Encoder PLAY, packet SPacketLocInfo, id 2, size 129
+[21:52:45:701] [nioEventLoopGroup-0-3/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[21:52:45:703] [nioEventLoopGroup-0-3/INFO]: Encoder PLAY, packet SPacketStore, id 6, size 482
+[21:52:53:121] [nioEventLoopGroup-0-5/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[21:52:53:122] [nioEventLoopGroup-0-5/INFO]: Encoder PLAY, packet SPacketLocInfo, id 2, size 160
+[21:52:54:123] [nioEventLoopGroup-0-5/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[21:52:54:124] [nioEventLoopGroup-0-5/INFO]: Encoder PLAY, packet SPacketLocInfo, id 2, size 226
+[22:58:52:356] [nioEventLoopGroup-0-4/INFO]: Соединение установлено
+[22:58:53:861] [nioEventLoopGroup-0-1/INFO]: Соединение разорвано
+[23:50:48:799] [nioEventLoopGroup-0-6/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:50:48:803] [nioEventLoopGroup-0-6/INFO]: Encoder PLAY, packet SPacketStore, id 6, size 482
+[23:50:51:115] [nioEventLoopGroup-0-5/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:50:51:116] [nioEventLoopGroup-0-5/INFO]: Encoder PLAY, packet SPacketLocInfo, id 2, size 160
+[23:50:52:043] [nioEventLoopGroup-0-5/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:50:52:044] [nioEventLoopGroup-0-5/INFO]: Encoder PLAY, packet SPacketLocInfo, id 2, size 226
+[23:50:54:930] [nioEventLoopGroup-0-8/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:50:54:945] [nioEventLoopGroup-0-8/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:50:56:395] [nioEventLoopGroup-0-0/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:50:56:405] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:50:57:469] [nioEventLoopGroup-0-0/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:50:57:478] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:50:58:785] [nioEventLoopGroup-0-0/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:50:58:793] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:50:59:703] [nioEventLoopGroup-0-0/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:50:59:713] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:00:604] [nioEventLoopGroup-0-7/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:00:612] [nioEventLoopGroup-0-7/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:01:337] [nioEventLoopGroup-0-17/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:01:347] [nioEventLoopGroup-0-17/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:02:247] [nioEventLoopGroup-0-17/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:02:256] [nioEventLoopGroup-0-17/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:03:175] [nioEventLoopGroup-0-17/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:03:184] [nioEventLoopGroup-0-17/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:04:473] [nioEventLoopGroup-0-0/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:04:481] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:05:454] [nioEventLoopGroup-0-21/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:05:464] [nioEventLoopGroup-0-21/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:06:103] [nioEventLoopGroup-0-0/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:06:112] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:07:174] [nioEventLoopGroup-0-0/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:07:181] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:07:885] [nioEventLoopGroup-0-21/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:07:893] [nioEventLoopGroup-0-21/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:08:713] [nioEventLoopGroup-0-21/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:08:723] [nioEventLoopGroup-0-21/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:09:847] [nioEventLoopGroup-0-21/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:09:854] [nioEventLoopGroup-0-21/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:10:825] [nioEventLoopGroup-0-21/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:10:836] [nioEventLoopGroup-0-21/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:11:978] [nioEventLoopGroup-0-21/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:11:983] [nioEventLoopGroup-0-21/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:13:137] [nioEventLoopGroup-0-21/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:13:146] [nioEventLoopGroup-0-21/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:14:089] [nioEventLoopGroup-0-21/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:14:095] [nioEventLoopGroup-0-21/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:15:037] [nioEventLoopGroup-0-17/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:15:047] [nioEventLoopGroup-0-17/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:15:751] [nioEventLoopGroup-0-17/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:15:759] [nioEventLoopGroup-0-17/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:16:895] [nioEventLoopGroup-0-9/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:16:905] [nioEventLoopGroup-0-9/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:18:740] [nioEventLoopGroup-0-20/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:18:747] [nioEventLoopGroup-0-20/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:19:358] [nioEventLoopGroup-0-21/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:19:367] [nioEventLoopGroup-0-21/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:20:239] [nioEventLoopGroup-0-0/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:20:246] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:20:755] [nioEventLoopGroup-0-0/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:20:763] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:21:777] [nioEventLoopGroup-0-0/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:51:21:785] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketActionReturn, id 5, size 8
+[23:51:29:096] [nioEventLoopGroup-0-20/INFO]: Соединение разорвано

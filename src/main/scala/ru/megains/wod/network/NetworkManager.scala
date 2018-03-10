@@ -6,12 +6,12 @@ import java.util.concurrent.locks.ReentrantReadWriteLock
 import io.netty.channel._
 import io.netty.util.AttributeKey
 import ru.megains.wod.network.handler.INetHandler
-import ru.megains.wod.network.packet.{ConnectionState, Packet}
 import ru.megains.wod.network.packet.login.SPacketDisconnect
+import ru.megains.wod.network.packet.{ConnectionState, Packet, PacketRead}
 import ru.megains.wod.{Logger, WoDServer}
 
 
-class NetworkManager(server:WoDServer) extends SimpleChannelInboundHandler[Packet[INetHandler]] with Logger[NetworkManager] {
+class NetworkManager(server:WoDServer) extends SimpleChannelInboundHandler[PacketRead[INetHandler]] with Logger[NetworkManager] {
 
 
     var channel: Channel = _
@@ -122,7 +122,7 @@ class NetworkManager(server:WoDServer) extends SimpleChannelInboundHandler[Packe
     }
 
 
-    override def messageReceived(ctx: ChannelHandlerContext, packet: Packet[INetHandler]): Unit = {
+    override def messageReceived(ctx: ChannelHandlerContext, packet: PacketRead[INetHandler]): Unit = {
 
                   if (channel.isOpen) {
                 if(packet.isImportant){

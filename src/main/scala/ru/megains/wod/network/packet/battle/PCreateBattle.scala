@@ -1,15 +1,15 @@
 package ru.megains.wod.network.packet.battle
 
 import ru.megains.wod.entity.EntityType.EntityType
-import ru.megains.wod.network.packet.{Packet, PacketBuffer}
+import ru.megains.wod.network.packet.{PacketBuffer, PacketWrite}
 
-class PCreateBattle(id:Int, id1:Int,et1:EntityType,id2:Int,et2:EntityType) extends Packet{
+class PCreateBattle(id:Int, id1:Int,et1:EntityType,id2:Int,et2:EntityType) extends PacketWrite{
 
 
 
-    override def readPacketData(buf: PacketBuffer): Unit = {
-
-    }
+//    override def readPacketData(buf: PacketBuffer): Unit = {
+//
+//    }
 
     override def writePacketData(buf: PacketBuffer): Unit = {
         buf.writeInt(id)
@@ -19,7 +19,7 @@ class PCreateBattle(id:Int, id1:Int,et1:EntityType,id2:Int,et2:EntityType) exten
         buf.writeByte(et2.id)
     }
 
-    override def processPacket(handler: Nothing): Unit = {
-
-    }
+//    override def processPacket(handler: Nothing): Unit = {
+//
+//    }
 }

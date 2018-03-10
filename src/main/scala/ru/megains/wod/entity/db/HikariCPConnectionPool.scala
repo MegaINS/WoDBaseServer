@@ -30,21 +30,14 @@ class HikariCPConnectionPool (environment: Environment) extends ConnectionPool {
       */
     override def create(name: String, dbConfig: DatabaseConfig): DataSource = {
 
-
+        println(s"Creating Pool for datasource '$name'")
         Try {
-            println(s"Creating Pool for datasource '$name'")
-
-            val hikariConfig = new HikariCPConfig(dbConfig).toHikariConfig
-            val datasource = new HikariDataSource(hikariConfig)
-
-
+            new HikariDataSource(new HikariCPConfig(dbConfig).toHikariConfig)
 //            // Bind in JNDI
 //            dbConfig.jndiName.foreach { jndiName =>
 //                JNDI.initialContext.rebind(jndiName, datasource)
 //                logger.info(s"datasource [$name] bound to JNDI as $jndiName")
 //            }
-
-            datasource
         } match {
             case Success(datasource) => datasource
             case Failure(ex) => throw new Exception(ex.getMessage, ex)

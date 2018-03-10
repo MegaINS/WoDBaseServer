@@ -2,18 +2,19 @@ package ru.megains.wod.network.protocol
 
 import java.io.IOException
 import java.util
+
 import io.netty.buffer.ByteBuf
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ByteToMessageCodec
 import ru.megains.wod.Logger
 import ru.megains.wod.network.NetworkManager
-import ru.megains.wod.network.packet.{ConnectionState, Packet, PacketBuffer}
+import ru.megains.wod.network.packet.{ConnectionState, PacketBuffer, PacketWrite}
 
 
-class WoDMessageCodec extends ByteToMessageCodec[Packet[_]] with Logger[WoDMessageCodec]{
+class WoDMessageCodec extends ByteToMessageCodec[PacketWrite] with Logger[WoDMessageCodec]{
 
 
-    override def encode(ctx: ChannelHandlerContext, msg: Packet[_], out: ByteBuf): Unit = {
+    override def encode(ctx: ChannelHandlerContext, msg: PacketWrite, out: ByteBuf): Unit = {
 
         val id = ctx.pipeline().channel().attr(NetworkManager.PROTOCOL_ATTRIBUTE_KEY).get().getServerPacketId(msg.getClass)
         val buffer = new PacketBuffer(out)

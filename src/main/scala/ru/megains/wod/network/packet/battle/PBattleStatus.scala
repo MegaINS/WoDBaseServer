@@ -1,9 +1,9 @@
 package ru.megains.wod.network.packet.battle
 
 import ru.megains.wod.network.handler.NetHandlerBattleServer
-import ru.megains.wod.network.packet.{Packet, PacketBuffer}
+import ru.megains.wod.network.packet.{PacketBuffer, PacketRead}
 
-class PBattleStatus extends Packet[NetHandlerBattleServer]{
+class PBattleStatus extends PacketRead[NetHandlerBattleServer]{
 
         var id:Int = -1
     var status:Int = -1
@@ -12,9 +12,9 @@ class PBattleStatus extends Packet[NetHandlerBattleServer]{
         status = buf.readByte()
     }
 
-    override def writePacketData(buf: PacketBuffer): Unit = {
-
-    }
+//    override def writePacketData(buf: PacketBuffer): Unit = {
+//
+//    }
 
     override def processPacket(handler: NetHandlerBattleServer): Unit = {
         handler.processBattleStatus(this)

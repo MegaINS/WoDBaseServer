@@ -1,14 +1,13 @@
 package ru.megains.wod.network.packet.login
 
-import ru.megains.wod.network.handler.INetHandler
-import ru.megains.wod.network.packet.{Packet, PacketBuffer}
+import ru.megains.wod.network.packet.{PacketBuffer, PacketWrite}
 
-class SPacketLoginSuccess extends Packet[INetHandler] {
+class SPacketLoginSuccess extends PacketWrite {
 
 
-    override def readPacketData(packetBuffer: PacketBuffer): Unit = {
-
-    }
+//    override def readPacketData(packetBuffer: PacketBuffer): Unit = {
+//
+//    }
 
     override def writePacketData(packetBuffer: PacketBuffer): Unit = {
 
@@ -17,7 +16,7 @@ class SPacketLoginSuccess extends Packet[INetHandler] {
 //    override def processPacket(handler: INetHandlerLoginClient): Unit = {
 //        handler.handleLoginSuccess(this)
 //    }
-    override def processPacket(handler: INetHandler): Unit = {
-
-}
+//    override def processPacket(handler: INetHandler): Unit = {
+//
+//}
 }

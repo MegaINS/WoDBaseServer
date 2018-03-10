@@ -2,15 +2,15 @@ package ru.megains.wod.network.packet.play
 
 import ru.megains.wod.inventory.InventoryBackpack
 import ru.megains.wod.inventory.InventoryType.InventoryType
-import ru.megains.wod.network.packet.{Packet, PacketBuffer}
+import ru.megains.wod.network.packet.{PacketBuffer, PacketWrite}
 
-class SPacketInventory(invType: InventoryType, inventory: InventoryBackpack) extends Packet{
+class SPacketInventory(invType: InventoryType, inventory: InventoryBackpack) extends PacketWrite{
 
 
 
-    override def readPacketData(buf: PacketBuffer): Unit = {
-
-    }
+//    override def readPacketData(buf: PacketBuffer): Unit = {
+//
+//    }
 
     override def writePacketData(buf: PacketBuffer): Unit = {
         buf.writeByte(invType.id)
@@ -21,7 +21,7 @@ class SPacketInventory(invType: InventoryType, inventory: InventoryBackpack) ext
         }
     }
 
-    override def processPacket(handler: Nothing): Unit = {
-
-    }
+//    override def processPacket(handler: Nothing): Unit = {
+//
+//    }
 }

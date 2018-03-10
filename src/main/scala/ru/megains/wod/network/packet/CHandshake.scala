@@ -2,7 +2,7 @@ package ru.megains.wod.network.packet
 
 import ru.megains.wod.network.handler.NetHandlerHandshakeTCP
 
-class CHandshake() extends Packet[NetHandlerHandshakeTCP] {
+class CHandshake() extends PacketRead[NetHandlerHandshakeTCP] {
 
     var connectionState: ConnectionState = _
 
@@ -17,9 +17,9 @@ class CHandshake() extends Packet[NetHandlerHandshakeTCP] {
         connectionState = ConnectionState.getFromId(packetBuffer.readByte())
     }
 
-    override def writePacketData(packetBuffer: PacketBuffer): Unit = {
-        packetBuffer.writeInt(connectionState.id)
-    }
+//    override def writePacketData(packetBuffer: PacketBuffer): Unit = {
+//        packetBuffer.writeInt(connectionState.id)
+//    }
 
 
     def hasPriority: Boolean = true

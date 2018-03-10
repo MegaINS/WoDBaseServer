@@ -3,9 +3,9 @@ package ru.megains.wod.network.packet.login
 import java.io.IOException
 
 import ru.megains.wod.network.handler.INetHandler
-import ru.megains.wod.network.packet.{Packet, PacketBuffer}
+import ru.megains.wod.network.packet.{PacketBuffer, PacketWrite}
 
-class SPacketDisconnect() extends Packet[INetHandler] {
+class SPacketDisconnect() extends PacketWrite {
 
     private var reason: String = _
 

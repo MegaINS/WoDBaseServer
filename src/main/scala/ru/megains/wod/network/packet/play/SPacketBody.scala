@@ -1,14 +1,14 @@
 package ru.megains.wod.network.packet.play
 
-import ru.megains.wod.network.packet.{Packet, PacketBuffer}
 import ru.megains.wod.entity.player.PlayerBody
+import ru.megains.wod.network.packet.{PacketBuffer, PacketWrite}
 
-class SPacketBody(body: PlayerBody) extends Packet{
+class SPacketBody(body: PlayerBody) extends PacketWrite{
 
 
-    override def readPacketData(buf: PacketBuffer): Unit = {
-
-    }
+//    override def readPacketData(buf: PacketBuffer): Unit = {
+//
+//    }
 
     override def writePacketData(buf: PacketBuffer): Unit = {
         val bodyFilter = body.slots.filter{case(_,item)=> item != null }
@@ -20,7 +20,7 @@ class SPacketBody(body: PlayerBody) extends Packet{
         }
     }
 
-    override def processPacket(handler: Nothing): Unit = {
-
-    }
+//    override def processPacket(handler: Nothing): Unit = {
+//
+//    }
 }

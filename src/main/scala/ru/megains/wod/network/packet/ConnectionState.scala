@@ -10,24 +10,24 @@ import scala.collection.mutable
 sealed abstract class ConnectionState(val name: String, val id: Int) {
 
 
-    val serverIdPacket = new mutable.HashMap[ Class[_ <: Packet[_]],Int]()
-    val clientPacketId = new mutable.HashMap[Int,Class[_ <: Packet[_]]]()
+    val serverIdPacket = new mutable.HashMap[ Class[_ <: PacketWrite],Int]()
+    val clientPacketId = new mutable.HashMap[Int,Class[_ <: PacketRead[_]]]()
 
 
-    def registerServerPacket(packet: Class[_ <: Packet[_]]): Unit = {
+    def registerServerPacket(packet: Class[_ <: PacketWrite]): Unit = {
         serverIdPacket +=  packet -> serverIdPacket.size
     }
-    def registerClientPacket(packet: Class[_ <: Packet[_]]): Unit = {
+    def registerClientPacket(packet: Class[_ <: PacketRead[_]]): Unit = {
         clientPacketId += clientPacketId.size -> packet
     }
-    def getServerPacketId(packet: Class[_ <: Packet[_]]): Int = {
+    def getServerPacketId(packet: Class[_ <: PacketWrite]): Int = {
         serverIdPacket(packet)
     }
 
 
-    def getClientPacket(id: Int): Packet[_] = {
+    def getClientPacket(id: Int): PacketRead[_] = {
         val packet = clientPacketId(id)
-        if (packet ne null) packet.newInstance() else null.asInstanceOf[Packet[_]]
+        if (packet ne null) packet.newInstance() else null.asInstanceOf[PacketRead[_]]
     }
 
 }
@@ -74,18 +74,26 @@ object ConnectionState {
 
 
     case object PLAY extends ConnectionState("PLAY", 3) {
-        registerServerPacket(classOf[SPacketDisconnect])
-        registerServerPacket(classOf[SPacketPlayerInfo])
-        registerServerPacket(classOf[SPacketLocInfo])
-        registerServerPacket(classOf[SPacketInventory])
-        registerServerPacket(classOf[SPacketBody])
-        registerServerPacket(classOf[SPacketActionReturn])
-        registerServerPacket(classOf[SPacketStore])
-        registerServerPacket(classOf[SPacketInvUpdate])
-        registerServerPacket(classOf[SPacketStartBattle])
+        {
+            registerServerPacket(classOf[SPacketDisconnect])
+            registerServerPacket(classOf[SPacketPlayerInfo])
+            registerServerPacket(classOf[SPacketLocInfo])
+            registerServerPacket(classOf[SPacketInventory])
+            registerServerPacket(classOf[SPacketBody])
+            registerServerPacket(classOf[SPacketActionReturn])
+            registerServerPacket(classOf[SPacketStore])
+            registerServerPacket(classOf[SPacketInvUpdate])
+            registerServerPacket(classOf[SPacketStartBattle])
+            registerServerPacket(classOf[SPacketPlayerLocation])
+        }
+
+        {
+            registerClientPacket(classOf[CPacketAction])
+        }
 
 
-        registerClientPacket(classOf[CPacketAction])
+
+
 
 
     }
@@ -102,6 +110,8 @@ object ConnectionState {
         //
         //        registerClientPacket(classOf[CPacketAction])
         registerServerPacket(classOf[PCreateBattle])
+
+
         registerClientPacket(classOf[PBattleStatus])
 
     }

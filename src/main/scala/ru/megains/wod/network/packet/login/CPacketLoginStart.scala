@@ -1,9 +1,9 @@
 package ru.megains.wod.network.packet.login
 
 import ru.megains.wod.network.handler.INetHandlerLoginServer
-import ru.megains.wod.network.packet.{Packet, PacketBuffer}
+import ru.megains.wod.network.packet.{PacketBuffer, PacketRead}
 
-class CPacketLoginStart extends Packet[INetHandlerLoginServer] {
+class CPacketLoginStart extends PacketRead[INetHandlerLoginServer] {
 
 
     var email: String = ""
@@ -14,9 +14,9 @@ class CPacketLoginStart extends Packet[INetHandlerLoginServer] {
         pass = packetBuffer.readStringFromBuffer(255)
     }
 
-    override def writePacketData(packetBuffer: PacketBuffer): Unit = {
-
-    }
+//    override def writePacketData(packetBuffer: PacketBuffer): Unit = {
+//
+//    }
 
     override def processPacket(handler: INetHandlerLoginServer): Unit = {
         handler.processLoginStart(this)

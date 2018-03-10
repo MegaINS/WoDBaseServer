@@ -46,7 +46,6 @@ class NetHandlerPlayServer(server: WoDServer, val networkManager: NetworkManager
                 player.take(id)
             case Action.delete =>
                 player.backpack.delete(id)
-
             case Action.store =>
                 player.location().sendStore(id,player)
             case Action.storeBuy =>

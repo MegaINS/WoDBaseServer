@@ -1,0 +1,24 @@
+USE `wod`;
+
+INSERT INTO user_auth (email, password) VALUES ('test@mail.ru','1111');
+INSERT INTO user_auth (email, password) VALUES ('aaaa@mail.ru','1111');
+INSERT INTO user_auth (email, password) VALUES ('qwer@mail.ru','1111');
+INSERT INTO user_auth (email, password) VALUES ('bbbb@mail.ru','1111');
+
+INSERT INTO user_info (name) VALUES ('Test_1');
+INSERT INTO user_info (name) VALUES ('Test_2');
+INSERT INTO user_info (name) VALUES ('Test_3');
+INSERT INTO user_info (name) VALUES ('Test_4');
+
+INSERT INTO location (name) VALUES ('Общая id: 1');
+INSERT INTO location (name) VALUES ('Светлые id: 2');
+INSERT INTO location (name) VALUES ('Светлые id: 3');
+INSERT INTO location (name) VALUES ('Светлые id: 4');
+INSERT INTO location (name) VALUES ('Светлые id: 5');
+INSERT INTO location (name) VALUES ('Темные id: 6');
+INSERT INTO location (name) VALUES ('Темные id: 7');
+INSERT INTO location (name) VALUES ('Темные id: 8');
+INSERT INTO location (name) VALUES ('Темные id: 9');
+
+INSERT INTO loc_loc (locid_in, locid_out) VALUES (1,2);
+INSERT INTO loc_loc (locid_in, locid_out) VALUES (1,6);

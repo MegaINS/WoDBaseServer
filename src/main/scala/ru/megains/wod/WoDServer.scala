@@ -1,5 +1,6 @@
 package ru.megains.wod
 
+import ru.megains.wod.location.Locations
 import ru.megains.wod.network.{NetworkManager, NetworkSystem}
 
 class WoDServer extends Logger[WoDServer] {
@@ -21,7 +22,7 @@ class WoDServer extends Logger[WoDServer] {
         log.info("Load stores")
         //Stores.load()
         log.info("Load locations")
-        //Locations.load()
+        Locations.load()
 
         log.info("Start NetworkSystem")
         networkSystem.startLan(null,8080)

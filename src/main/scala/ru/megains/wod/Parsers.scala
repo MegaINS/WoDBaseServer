@@ -12,6 +12,14 @@ import ru.megains.wod.store.StoreSection
 import scala.collection.immutable.HashMap
 
 object Parsers {
+    val loc_loc: RowParser[(Int,Int,Int)] = {
+        get[Int]("id") ~
+        get[Int]("locid_in") ~
+        get[Int]("locid_out") map{
+            case id~idIn~idOut =>(id,idIn,idOut)
+        }
+    }
+
 
     val itemBase: RowParser[ItemBase] = {
         get[Int]("id") ~
@@ -44,18 +52,8 @@ object Parsers {
 
     val location: RowParser[LocInfo] = {
         get[Int]("id") ~
-        get[String]("name") ~
-        get[String]("transits")~
-        get[String]("stores")~
-        get[String]("mobs")map{
-            case id~name~transits~stores~mobs =>
-                LocInfo(
-                    id,
-                    name,
-                    transits.split("_").map(_.toInt),
-                    if(stores == "") Array.emptyIntArray else stores.split("_").map(_.toInt),
-                    if(mobs == "") Array.emptyIntArray else mobs.split("_").map(_.toInt)
-                )
+        get[String]("name") map{
+            case id~name =>LocInfo(id,name)
         }
     }
 
@@ -119,13 +117,12 @@ object Parsers {
 
     val userInfo: RowParser[PlayerInfo] = {
         get[Int]("id") ~
-        get[String]("nick") ~
+        get[String]("name") ~
         get[Int]("level") ~
         get[Int]("exp") ~
         get[Int]("location") ~
-        get[Int]("money") ~
-        get[Int]("battle") map{
-            case id~nick~level~exp~loc~money~battle =>new PlayerInfo(id,nick,level,exp,loc,money,battle)
+        get[Int]("money") map{
+            case id~name~level~exp~loc~money =>new PlayerInfo(id,name,level,exp,loc,money)
         }
     }
 

@@ -1,12 +1,12 @@
 package ru.megains.wod.location
 
-import ru.megains.wod.{Action, Logger}
 import ru.megains.wod.caseclass.LocInfo
-import ru.megains.wod.entity.mob.{Mob, Mobs}
+import ru.megains.wod.entity.mob.Mob
+import ru.megains.wod.entity.player.Player
 import ru.megains.wod.network.packet.PacketBuffer
 import ru.megains.wod.network.packet.play.{SPacketPlayerLocation, SPacketStore}
-import ru.megains.wod.entity.player.Player
-import ru.megains.wod.store.{Store, StoreNone, Stores}
+import ru.megains.wod.store.Store
+import ru.megains.wod.{Action, Logger}
 
 import scala.collection.mutable
 
@@ -17,10 +17,10 @@ class Location(info: LocInfo) extends Logger[Location]{
     val id = info.id
     val name = info.name
 
-    private val transits = new mutable.HashMap[Int,Location]()
-    private val players = new mutable.HashMap[Int,Player]()
-    private val stores = new mutable.HashMap[Int,Store]()
-    private val mobs = new mutable.HashMap[Int,Mob]()
+    val transits = new mutable.HashMap[Int,Location]()
+    val players = new mutable.HashMap[Int,Player]()
+    val stores = new mutable.HashMap[Int,Store]()
+    val mobs = new mutable.HashMap[Int,Mob]()
 
     def getStore(id: Int): Store = {
         stores.getOrElse(id,default = null)
@@ -29,30 +29,30 @@ class Location(info: LocInfo) extends Logger[Location]{
 
 
     def init(): Unit = {
-        info.transits.foreach(id =>{
-            val loc = Locations.getLocation(id)
-            if(loc == LocationNone){
-                log.info(s"Error init location ${info.id} ${info.name} transit id=$id ")
-            }else{
-                transits += id -> loc
-            }
-        })
-        info.stores.foreach(id =>{
-            val store = Stores.getStore(id)
-            if(store == StoreNone){
-                log.info(s"Error init location ${info.id} ${info.name} store id=$id ")
-            }else{
-                stores += id -> store
-            }
-        })
-        info.mobs.foreach(id =>{
-            val mob = Mobs.getMob(id)
-            if(mob == null){
-                log.info(s"Error init location ${info.id} ${info.name} mob id=$id ")
-            }else{
-                mobs += id -> mob
-            }
-        })
+//        info.transits.foreach(id =>{
+//            val loc = Locations.getLocation(id)
+//            if(loc == LocationNone){
+//                log.info(s"Error init location ${info.id} ${info.name} transit id=$id ")
+//            }else{
+//                transits += id -> loc
+//            }
+//        })
+//        info.stores.foreach(id =>{
+//            val store = Stores.getStore(id)
+//            if(store == StoreNone){
+//                log.info(s"Error init location ${info.id} ${info.name} store id=$id ")
+//            }else{
+//                stores += id -> store
+//            }
+//        })
+//        info.mobs.foreach(id =>{
+//            val mob = Mobs.getMob(id)
+//            if(mob == null){
+//                log.info(s"Error init location ${info.id} ${info.name} mob id=$id ")
+//            }else{
+//                mobs += id -> mob
+//            }
+//        })
     }
 
     def moveToLocation(id: Int,player: Player): Unit = {

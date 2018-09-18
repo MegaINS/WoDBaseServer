@@ -1,17 +1,22 @@
-[14:49:33:073] [main/INFO]: Start WoDServer
-[14:49:33:147] [main/INFO]: Start GameLogicHandler
-[14:49:33:151] [main/INFO]: Load mobs
-[14:49:33:151] [main/INFO]: Load stores
-[14:49:33:151] [main/INFO]: Load locations
-[14:49:33:151] [main/INFO]: Start NetworkSystem
-[14:49:35:930] [nioEventLoopGroup-0-1/INFO]: Соединение установлено
-[14:49:36:086] [nioEventLoopGroup-0-2/INFO]: Decoder HANDSHAKING, packet CHandshake, id 0, size 3
-[14:49:36:087] [nioEventLoopGroup-0-2/INFO]: Decoder LOGIN, packet CPacketLoginStart, id 0, size 22
-[14:52:30:778] [nioEventLoopGroup-0-3/INFO]: Соединение разорвано
-[14:52:38:111] [nioEventLoopGroup-0-3/INFO]: Соединение установлено
-[14:52:38:253] [nioEventLoopGroup-0-3/INFO]: Decoder HANDSHAKING, packet CHandshake, id 0, size 3
-[14:52:38:253] [nioEventLoopGroup-0-3/INFO]: Decoder LOGIN, packet CPacketLoginStart, id 0, size 22
-[14:52:38:397] [pool-2-thread-3/INFO]: Start initialize player id=1
-[14:52:38:398] [nioEventLoopGroup-0-3/INFO]: Encoder LOGIN, packet SPacketLoginSuccess, id 1, size 2
-[14:52:38:520] [pool-2-thread-3/INFO]: Load player id=1
-[15:05:06:626] [nioEventLoopGroup-0-0/INFO]: Соединение разорвано
+[21:51:36:874] [main/INFO]: Start WoDServer
+[21:51:37:070] [main/INFO]: Start GameLogicHandler
+[21:51:37:078] [main/INFO]: Load mobs
+[21:51:37:078] [main/INFO]: Load stores
+[21:51:37:078] [main/INFO]: Load locations
+[21:51:37:883] [main/INFO]: Start NetworkSystem
+[21:51:48:684] [nioEventLoopGroup-0-0/INFO]: Соединение установлено
+[21:51:48:827] [nioEventLoopGroup-0-0/INFO]: Decoder HANDSHAKING, packet CHandshake, id 0, size 3
+[21:51:48:829] [nioEventLoopGroup-0-0/INFO]: Decoder LOGIN, packet CPacketLoginStart, id 0, size 22
+[21:51:48:861] [pool-2-thread-2/INFO]: Start initialize player id=1
+[21:51:48:861] [nioEventLoopGroup-0-0/INFO]: Encoder LOGIN, packet SPacketLoginSuccess, id 1, size 2
+[21:51:48:865] [pool-2-thread-2/INFO]: Load player id=1
+[21:51:48:880] [pool-2-thread-2/INFO]: End initialize player id=1 name=Test_1
+[21:51:48:882] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketPlayerInfo, id 1, size 26
+[21:51:48:889] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketLocInfo, id 2, size 69
+[21:51:48:895] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketPlayerLocation, id 9, size 10
+[21:51:48:897] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketPlayerLocation, id 9, size 26
+[21:51:59:664] [nioEventLoopGroup-0-1/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[21:51:59:673] [nioEventLoopGroup-0-1/INFO]: Encoder PLAY, packet SPacketLocInfo, id 2, size 27
+[21:51:59:693] [nioEventLoopGroup-0-1/INFO]: Encoder PLAY, packet SPacketPlayerLocation, id 9, size 10
+[21:51:59:694] [nioEventLoopGroup-0-1/INFO]: Encoder PLAY, packet SPacketPlayerLocation, id 9, size 26
+[21:52:03:666] [nioEventLoopGroup-0-1/INFO]: Соединение разорвано

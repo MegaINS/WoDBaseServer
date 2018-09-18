@@ -2,10 +2,10 @@ package ru.megains.wod.entity.player
 
 import anorm.SQL
 import ru.megains.wod.Action
-import ru.megains.wod.entity.Entity
 import ru.megains.wod.db.WoDDatabase
+import ru.megains.wod.entity.Entity
 import ru.megains.wod.entity.player.SlotType.SlotType
-import ru.megains.wod.inventory.{InventoryBackpack, InventoryType}
+import ru.megains.wod.inventory.InventoryBackpack
 import ru.megains.wod.item.ItemBase
 import ru.megains.wod.location.{Location, Locations}
 import ru.megains.wod.network.handler.INetHandler
@@ -30,7 +30,7 @@ class Player( val id:Int,val name:String) extends Entity {
             location = locationIn
             sendPacket(new SPacketLocInfo(location))
             db.withConnection(implicit c =>
-                SQL(s"UPDATE users_info SET location='${location.id}' WHERE id='$id'").execute()
+                SQL(s"UPDATE user_info SET location='${location.id}' WHERE id='$id'").execute()
             )
         }
         location
@@ -45,16 +45,16 @@ class Player( val id:Int,val name:String) extends Entity {
         exp = info.expIn
         location =   Locations.getLocation(info.locationIn)
 
-        backpack.load()
-        body.load()
-        slots.load()
+//        backpack.load()
+//        body.load()
+//        slots.load()
     }
 
     def sendData(): Unit ={
         sendPacket(new SPacketPlayerInfo(this))
-        sendPacket(new SPacketInventory(InventoryType.backpack, backpack))
-        sendPacket(new SPacketBody(body))
-        sendPacket(new SPacketSlots(slots))
+//        sendPacket(new SPacketInventory(InventoryType.backpack, backpack))
+//        sendPacket(new SPacketBody(body))
+//        sendPacket(new SPacketSlots(slots))
         location.enter(this)
     }
     def takeOff(slot: SlotType,id:Int): Unit = {

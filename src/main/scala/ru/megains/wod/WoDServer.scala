@@ -1,9 +1,6 @@
 package ru.megains.wod
 
-import ru.megains.wod.location.Locations
-import ru.megains.wod.entity.mob.Mobs
 import ru.megains.wod.network.{NetworkManager, NetworkSystem}
-import ru.megains.wod.store.Stores
 
 class WoDServer extends Logger[WoDServer] {
 
@@ -20,11 +17,11 @@ class WoDServer extends Logger[WoDServer] {
         log.info("Start GameLogicHandler")
         gameLogicHandler = new GameLogicHandler(this)
         log.info("Load mobs")
-        Mobs.load()
+       // Mobs.load()
         log.info("Load stores")
-        Stores.load()
+        //Stores.load()
         log.info("Load locations")
-        Locations.load()
+        //Locations.load()
 
         log.info("Start NetworkSystem")
         networkSystem.startLan(null,8080)

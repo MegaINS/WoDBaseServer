@@ -2,14 +2,15 @@ package ru.megains.wod.entity.player
 
 import anorm.SQL
 import ru.megains.wod.Action
-import ru.megains.wod.entity.db.WoDDatabase
 import ru.megains.wod.entity.Entity
+import ru.megains.wod.db.WoDDatabase
+import ru.megains.wod.entity.player.SlotType.SlotType
 import ru.megains.wod.inventory.{InventoryBackpack, InventoryType}
+import ru.megains.wod.item.ItemBase
 import ru.megains.wod.location.{Location, Locations}
 import ru.megains.wod.network.handler.INetHandler
-import ru.megains.wod.network.packet.{Packet, Status}
 import ru.megains.wod.network.packet.play._
-import ru.megains.wod.entity.player.BodySlot.BodySlot
+import ru.megains.wod.network.packet.{Packet, Status}
 
 class Player( val id:Int,val name:String) extends Entity {
 
@@ -18,6 +19,7 @@ class Player( val id:Int,val name:String) extends Entity {
     private var location:Location = _
     val backpack = new InventoryBackpack(this)
     val body = new PlayerBody(this)
+    val slots = new PlayerSlots(this)
     var level:Int = 0
     var money:Int = 0
     var exp:Int = 0
@@ -41,40 +43,52 @@ class Player( val id:Int,val name:String) extends Entity {
         level = info.levelIn
         money = info.moneyIn
         exp = info.expIn
-        location = Locations.getLocation(info.locationIn)
+        location =   Locations.getLocation(info.locationIn)
+
         backpack.load()
         body.load()
+        slots.load()
     }
 
     def sendData(): Unit ={
         sendPacket(new SPacketPlayerInfo(this))
-        sendPacket(new SPacketLocInfo(location))
         sendPacket(new SPacketInventory(InventoryType.backpack, backpack))
         sendPacket(new SPacketBody(body))
+        sendPacket(new SPacketSlots(slots))
+        location.enter(this)
     }
-    def takeOff(slot: BodySlot): Unit = {
+    def takeOff(slot: SlotType,id:Int): Unit = {
+        slot match {
+            case SlotType.none =>
+                throw new Exception("SlotType.none")
+            case SlotType.elixir =>
+                slots.takeOff(id)
+                println("SlotType.elixir")
+            case _ =>
+                val item = body.getItemInSlot(slot)
+                if(item ne null){
 
-        val item = body.getItemInSlot(slot)
-        if(item ne null){
-
-            body.setSlot(slot,null)
-            backpack.addItem(item)
-            db.withConnection(implicit c =>
-                SQL(s"UPDATE users_items SET place='backpack' WHERE id='${item.id}'").execute()
-            )
-            sendPacket(new SPacketActionReturn(Status.success,Action.takeOff,slot.id))
+                    body.setSlot(slot,null)
+                    backpack.addItem(item)
+                    sendPacket(new SPacketActionReturn(Status.success,Action.takeOff,slot.id))
+                }
         }
     }
 
     def take(id: Int): Unit = {
-        val item = backpack.getItemFromId(id)
-        takeOff(item.slot)
-        body.setSlot(item.slot,item)
-        backpack.removeItem(item.id)
-        db.withConnection(implicit c =>
-            SQL(s"UPDATE users_items SET place='body' WHERE id='${item.id}'").execute()
-        )
-        sendPacket(new SPacketActionReturn(Status.success,Action.take,item.id))
+        val itemBase:ItemBase = backpack.getItemBaseFromId(id)
+        itemBase.slot match {
+            case SlotType.none =>
+                throw new Exception("SlotType.none")
+            case SlotType.elixir =>
+                slots.take(id)
+            case _ =>
+                takeOff(itemBase.slot,0)
+                val item = backpack.getItemFromId(id)
+                body.setSlot(itemBase.slot,item)
+                sendPacket(new SPacketActionReturn(Status.success,Action.take,item.id))
+        }
+
     }
 
 

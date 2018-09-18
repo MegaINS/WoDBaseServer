@@ -3,17 +3,17 @@ package ru.megains.wod
 import anorm.SqlParser.get
 import anorm.{RowParser, ~}
 import ru.megains.wod.caseclass.{LocInfo, StoreInfo}
-import ru.megains.wod.item.{Item, ItemAction, ItemUser, Items}
 import ru.megains.wod.entity.mob.Mob
-import ru.megains.wod.entity.player.BodySlot.BodySlot
-import ru.megains.wod.entity.player.{BodySlot, PlayerInfo}
+import ru.megains.wod.entity.player.SlotType.SlotType
+import ru.megains.wod.entity.player.{PlayerInfo, SlotType}
+import ru.megains.wod.item._
 import ru.megains.wod.store.StoreSection
 
 import scala.collection.immutable.HashMap
 
 object Parsers {
 
-    val itemBase: RowParser[Item] = {
+    val itemBase: RowParser[ItemBase] = {
         get[Int]("id") ~
         get[String]("name") ~
         get[String]("img") ~
@@ -25,17 +25,21 @@ object Parsers {
         get[String]("action")~
         get[String]("slot")~
         get[Boolean]("stack")map{
-            case id~name~img~tupe~level~cost~weight~privat~action~slot~stack => new Item(id,name,img,tupe,level,cost,weight,privat,ItemAction.withName(action),BodySlot.withName(slot),stack )
+            case id~name~img~tupe~level~cost~weight~privat~action~slot~stack => new ItemBase(id,name,img,tupe,level,cost,weight,privat,ItemAction.withName(action),SlotType.withName(slot),stack )
         }
     }
 
     val itemUser: RowParser[ItemUser]={
         get[Int]("id")~
         get[Int]("item_base")~
-        get[String]("place")~
         get[Int]("amount")map{
-            case id~baseId~plase~amount => new ItemUser(id,baseId,plase,amount)
+            case id~baseId~amount => new ItemUser(id,baseId,amount)
         }
+    }
+
+
+    val itemsBackpackId: RowParser[Array[Int]]={
+        get[String]("items") map (items => items.split("_").map((s) => Integer.parseInt(s)))
     }
 
     val location: RowParser[LocInfo] = {
@@ -55,7 +59,7 @@ object Parsers {
         }
     }
 
-    val body: RowParser[Map[BodySlot, Int]] ={
+    val body: RowParser[Map[SlotType, Int]] ={
 
         get[Int]("head") ~
         get[Int]("gloves") ~
@@ -70,17 +74,17 @@ object Parsers {
 
             case  head~gloves~leggings~boots~hauberk~belt~cuirass~shoulders~leftHand~rightHand =>
 
-                HashMap[BodySlot,Int](
-                 BodySlot.head -> head,
-                 BodySlot.gloves ->gloves,
-                 BodySlot.leggings ->leggings,
-                 BodySlot.boots ->boots,
-                 BodySlot.hauberk ->hauberk,
-                 BodySlot.belt ->belt,
-                 BodySlot.cuirass ->cuirass,
-                 BodySlot.shoulders ->shoulders,
-                 BodySlot.leftHand ->leftHand,
-                 BodySlot.rightHand ->rightHand
+                HashMap[SlotType,Int](
+                 SlotType.head -> head,
+                 SlotType.gloves ->gloves,
+                 SlotType.leggings ->leggings,
+                 SlotType.boots ->boots,
+                 SlotType.hauberk ->hauberk,
+                 SlotType.belt ->belt,
+                 SlotType.cuirass ->cuirass,
+                 SlotType.shoulders ->shoulders,
+                 SlotType.leftHand ->leftHand,
+                 SlotType.rightHand ->rightHand
             )
         }
 
@@ -92,7 +96,7 @@ object Parsers {
         get[String]("name") ~
         get[String]("items")map{
             case id~name~section =>
-                val items: Array[Item] =  section.split("_").map(_.toInt).map(id=> Items.getItem(id))
+                val items: Array[ItemBase] =  section.split("_").map(_.toInt).map(id=> Items.getItem(id))
                 StoreSection(id,name,items)
         }
     }
@@ -122,6 +126,22 @@ object Parsers {
         get[Int]("money") ~
         get[Int]("battle") map{
             case id~nick~level~exp~loc~money~battle =>new PlayerInfo(id,nick,level,exp,loc,money,battle)
+        }
+    }
+
+    val userSlot: RowParser[Array[Int]] = {
+        get[Int]("item0") ~
+        get[Int]("item1") ~
+        get[Int]("item2") ~
+        get[Int]("item3") ~
+        get[Int]("item4") ~
+        get[Int]("item5") ~
+        get[Int]("item6") ~
+        get[Int]("item7") ~
+        get[Int]("item8") ~
+        get[Int]("item9") map{
+            case item0~item1~item2~item3~item4~item5~item6~item7~item8~item9 =>
+                Array(item0,item1,item2,item3,item4,item5,item6,item7,item8,item9)
         }
     }
 

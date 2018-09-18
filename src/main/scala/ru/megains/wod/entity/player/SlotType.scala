@@ -1,7 +1,7 @@
 package ru.megains.wod.entity.player
 
-object BodySlot extends Enumeration{
-    type BodySlot = Value
+object SlotType extends Enumeration{
+    type SlotType = Value
 
     val head = Value("head")
     val gloves = Value("gloves")
@@ -13,5 +13,6 @@ object BodySlot extends Enumeration{
     val shoulders = Value("shoulders")
     val leftHand = Value("leftHand")
     val rightHand = Value("rightHand")
+    val elixir = Value("elixir")
     val none = Value("none")
 }

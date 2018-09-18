@@ -2,7 +2,7 @@ package ru.megains.wod.entity.mob
 
 import anorm.SQL
 import ru.megains.wod.Parsers
-import ru.megains.wod.entity.db.WoDDatabase
+import ru.megains.wod.db.WoDDatabase
 
 import scala.collection.mutable
 

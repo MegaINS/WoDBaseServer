@@ -1,11 +1,13 @@
 package ru.megains.wod.item
 
 import ru.megains.wod.item.ItemAction.ItemAction
-import ru.megains.wod.entity.player.BodySlot.BodySlot
+import ru.megains.wod.entity.player.SlotType.SlotType
 
-class ItemUser(val id:Int,baseId:Int, val place:String,var amount:Int) {
+class ItemUser(val id:Int,baseId:Int,var amount:Int) {
 
-    val itemBase: Item = Items.getItem(baseId)
+
+
+    val itemBase: ItemBase = Items.getItem(baseId)
 
     def img = itemBase.img
 
@@ -13,5 +15,8 @@ class ItemUser(val id:Int,baseId:Int, val place:String,var amount:Int) {
 
     def name = itemBase.name
 
-    def  slot:BodySlot = itemBase.slot
+    def slot:SlotType = itemBase.slot
+    def get(playerId:Int, value: Int): ItemUser = {
+        Items.createItemPlayer(baseId,playerId,value)
+    }
 }

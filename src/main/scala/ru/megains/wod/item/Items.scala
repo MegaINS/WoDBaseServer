@@ -2,16 +2,18 @@ package ru.megains.wod.item
 
 import anorm.SQL
 import ru.megains.wod.Parsers
-import ru.megains.wod.entity.db.WoDDatabase
+import ru.megains.wod.db.WoDDatabase
 
 object Items {
 
     val db = WoDDatabase.db
-    var idItems = Map.empty[Int,Item]
+    var idItems = Map.empty[Int,ItemBase]
 
 
-    def  getItem(id:Int): Item ={
-        if(idItems.contains(id)){
+    def  getItem(id:Int): ItemBase ={
+        if(id < 1){
+            null
+        }else if(idItems.contains(id)){
             idItems(id)
         }else{
             db.withConnection { implicit c =>
@@ -26,12 +28,12 @@ object Items {
         db.withConnection { implicit c =>
             val id:Option[Long] = SQL(
                 s"""
-             INSERT INTO users_items
-             (user_id,item_base,amount)
-              VALUES ($playerId,$itemId,$amount)
-            """).executeInsert()
+                    INSERT INTO users_items
+                    (user_id,item_base,amount)
+                    VALUES ($playerId,$itemId,$amount)
+                """).executeInsert()
 
-            new ItemUser(id.get.toInt, itemId, "backpack", amount)
+            new ItemUser(id.get.toInt, itemId, amount)
         }
     }
 }

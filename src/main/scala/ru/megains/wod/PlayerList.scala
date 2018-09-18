@@ -1,7 +1,7 @@
 package ru.megains.wod
 
 import anorm.SQL
-import ru.megains.wod.entity.db.{Database, WoDDatabase}
+import ru.megains.wod.db.{Database, WoDDatabase}
 import ru.megains.wod.network.NetworkManager
 import ru.megains.wod.network.handler.NetHandlerPlayServer
 import ru.megains.wod.entity.player.{Player, PlayerInfo}
@@ -23,7 +23,7 @@ class PlayerList(server: WoDServer) extends Logger[PlayerList]{
         }else{
             db.withConnection(implicit c =>{
                 log.info(s"Load player id=$id")
-                val userInfo: PlayerInfo = SQL(s"SELECT * FROM users_info WHERE id='$id'").as(Parsers.userInfo.single)
+                val userInfo: PlayerInfo = SQL(s"SELECT * FROM user_info WHERE id='$id'").as(Parsers.userInfo.single)
                 player = new Player(userInfo.id,userInfo.name)
                 player.load(userInfo)
                 players += player.id -> player

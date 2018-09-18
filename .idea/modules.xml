@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/wodbaseserver.iml" filepath="$PROJECT_DIR$/.idea/modules/wodbaseserver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/WoDBaseServer.iml" filepath="$PROJECT_DIR$/.idea/modules/WoDBaseServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/wodbaseserver-build.iml" filepath="$PROJECT_DIR$/.idea/modules/wodbaseserver-build.iml" />
     </modules>
   </component>

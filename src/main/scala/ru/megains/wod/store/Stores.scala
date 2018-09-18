@@ -2,11 +2,11 @@ package ru.megains.wod.store
 
 import anorm.SQL
 import ru.megains.wod.Parsers
-import ru.megains.wod.entity.db.WoDDatabase
+import ru.megains.wod.db.WoDDatabase
 
 import scala.collection.mutable
 
-object Stores {
+object Stores extends {
 
     val db = WoDDatabase.db
     private val storesMap = new mutable.HashMap[Int,Store]()

@@ -4,7 +4,7 @@ package ru.megains.wod.network.packet;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.buffer.ByteBufProcessor;
-import ru.megains.wod.item.Item;
+import ru.megains.wod.item.ItemBase;
 import ru.megains.wod.item.ItemUser;
 
 import java.io.IOException;
@@ -36,7 +36,7 @@ public class PacketBuffer extends ByteBuf {
     }
 
 
-    public void writeItem(Item item)throws IOException {
+    public void writeItemBase(ItemBase item)throws IOException {
         writeInt(item.id());
         writeStringToBuffer(item.name());
         writeStringToBuffer(item.img());

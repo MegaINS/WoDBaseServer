@@ -1,4 +1,4 @@
-package ru.megains.wod.entity.db
+package ru.megains.wod.db
 
 object Mode extends Enumeration {
     type Mode = Value

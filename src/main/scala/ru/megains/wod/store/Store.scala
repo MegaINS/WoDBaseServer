@@ -2,9 +2,9 @@ package ru.megains.wod.store
 
 import ru.megains.wod.Logger
 import ru.megains.wod.caseclass.StoreInfo
-import ru.megains.wod.item.{Item, ItemUser, Items}
-import ru.megains.wod.network.packet.PacketBuffer
 import ru.megains.wod.entity.player.Player
+import ru.megains.wod.item.ItemBase
+import ru.megains.wod.network.packet.PacketBuffer
 
 import scala.collection.mutable
 
@@ -37,30 +37,17 @@ class Store(storeInfo: StoreInfo) extends Logger[Store]{
             section =>
                 buf.writeStringToBuffer(section.name)
                 buf.writeByte(section.items.length)
-                section.items.foreach(item => buf.writeItem(item))
+                section.items.foreach(item => buf.writeItemBase(item))
         }
     }
 
     def buyItem(id: Int, value: Int, player: Player): Unit = {
 
-        var itemBuy:Item = null
+        var itemBuy:ItemBase = null
         sections.values.foreach{
-            section => section.items.find(_.id == id).foreach(item=>itemBuy = item )
+            section =>  section.items.find(_.id == id).foreach(i=>itemBuy =i)
         }
-        if(itemBuy!= null){
-            if(itemBuy.stack){
-                if(player.backpack.contains(id)){
-                    player.backpack.updateItem(id,value)
-                }else{
-                    player.backpack.addItems(Array(Items.createItemPlayer(id,player.id,value)))
-                }
-            }else{
-                val items = new Array[ItemUser](value)
-                for(i<- 0 until value){
-                    items(i) = Items.createItemPlayer(id,player.id)
-                }
-                player.backpack.addItems(items)
-            }
-        }
+        player.backpack.addItemBase(itemBuy)
+        //TODO money
     }
 }

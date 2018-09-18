@@ -1,33 +1,28 @@
 package ru.megains.wod.inventory
 
-import ru.megains.wod.entity.db.WoDDatabase
-import ru.megains.wod.item.ItemUser
+abstract class Inventory  {
 
-import scala.collection.mutable
-
-abstract class Inventory {
-
-    val db = WoDDatabase.db
-    val items = new mutable.HashMap[Int,ItemUser]()
+//    val db = WoDDatabase.db
+//    val items = new mutable.HashMap[Int,ItemUser]()
 
 
 
-    def addItem(item: ItemUser): Unit = {
-        if (item.itemBase.stack) {
+//    def addItem(item: ItemUser): Unit = {
+//        if (item.itemBase.stack) {
+//
+//        } else {
+//            items += item.id -> item
+//        }
+//    }
 
-        } else {
-            items += item.id -> item
-        }
-    }
 
-
-    def getItemFromId(id: Int): ItemUser = {
-        items.getOrElse(id,default = null)
-    }
-
-    def removeItem(id: Int): Unit = {
-        items -= id
-    }
+//    def getItemFromId(id: Int): ItemUser = {
+//        items.getOrElse(id,default = null)
+//    }
+//
+//    def removeItem(id: Int): Unit = {
+//        items -= id
+//    }
 
 
 

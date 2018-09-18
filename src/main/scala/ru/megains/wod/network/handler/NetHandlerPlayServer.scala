@@ -3,7 +3,7 @@ package ru.megains.wod.network.handler
 import ru.megains.wod.battle.BattleList
 import ru.megains.wod.entity.EntityType
 import ru.megains.wod.entity.mob.Mobs
-import ru.megains.wod.entity.player.{BodySlot, Player}
+import ru.megains.wod.entity.player.{SlotType, Player}
 import ru.megains.wod.network.NetworkManager
 import ru.megains.wod.network.packet.Packet
 import ru.megains.wod.network.packet.battle.PCreateBattle
@@ -41,11 +41,11 @@ class NetHandlerPlayServer(server: WoDServer, val networkManager: NetworkManager
             case Action.moveToLcc =>
                 player.location().moveToLocation(id,player)
             case Action.takeOff =>
-                player.takeOff(BodySlot(id))
+                player.takeOff(SlotType(id),packet.value1)
             case Action.take =>
                 player.take(id)
             case Action.delete =>
-                player.backpack.delete(id)
+                player.backpack.deleteItem(id,-1000)
             case Action.store =>
                 player.location().sendStore(id,player)
             case Action.storeBuy =>

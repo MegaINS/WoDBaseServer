@@ -72,16 +72,22 @@ class Location(info: LocInfo) extends Logger[Location]{
         }
     }
 
+
+
+
+
     def enter(player: Player): Unit ={
         player.location(this)
         player.sendPacket(new SPacketPlayerLocation(Action.loadPlayerLoc,players.values.toList))
         players += player.id -> player
         players.values.foreach(_.sendPacket(new SPacketPlayerLocation(Action.moveToLcc,List(player))))
     }
+
     def exit(player: Player): Unit = {
         players -= player.id
         players.values.foreach(_.sendPacket(new SPacketPlayerLocation(Action.exitInLoc,List(player))))
     }
+
     def write(buf: PacketBuffer): Unit ={
         buf.writeStringToBuffer(name)
         buf.writeByte(transits.size)

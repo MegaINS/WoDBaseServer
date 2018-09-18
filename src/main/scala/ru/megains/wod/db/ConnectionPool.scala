@@ -1,4 +1,4 @@
-package ru.megains.wod.entity.db
+package ru.megains.wod.db
 
 import javax.sql.DataSource
 

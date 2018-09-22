@@ -2,21 +2,52 @@ package ru.megains.wod
 
 import anorm.SqlParser.get
 import anorm.{RowParser, ~}
-import ru.megains.wod.caseclass.{LocInfo, StoreInfo}
+import ru.megains.wod.caseclass.LocInfo
 import ru.megains.wod.entity.mob.Mob
 import ru.megains.wod.entity.player.SlotType.SlotType
 import ru.megains.wod.entity.player.{PlayerInfo, SlotType}
 import ru.megains.wod.item._
-import ru.megains.wod.store.StoreSection
+import ru.megains.wod.store.{Store, StoreTab}
 
 import scala.collection.immutable.HashMap
 
 object Parsers {
+    var loc_object : RowParser[(Int,Int,String,Int)] = {
+        get[Int]("id") ~
+                get[Int]("loc_id") ~
+                get[String]("object_type") ~
+                get[Int]("object_id") map{
+            case id~locId~objectType~objectId =>(id,locId,objectType,objectId)
+        }
+    }
+
+    var loc_store: RowParser[(Int,Int,Int)] = {
+        get[Int]("id") ~
+                get[Int]("loc_id") ~
+                get[Int]("store_id") map{
+            case id~id1~id2 =>(id,id1,id2)
+        }
+    }
+
+    val storeStoreTab: RowParser[(Int,Int)] = {
+        get[Int]("store_id") ~
+                get[Int]("store_tab_id")  map{
+            case storeId~tabId =>(storeId,tabId)
+        }
+    }
+
+    var storeTabItemBase : RowParser[(Int,Int)] = {
+        get[Int]("store_tab_id") ~
+        get[Int]("item_base_id")  map{
+            case tabId~iremId =>(tabId,iremId)
+        }
+    }
+
     val loc_loc: RowParser[(Int,Int,Int)] = {
         get[Int]("id") ~
-        get[Int]("locid_in") ~
-        get[Int]("locid_out") map{
-            case id~idIn~idOut =>(id,idIn,idOut)
+        get[Int]("loc_id_1") ~
+        get[Int]("loc_id_2") map{
+            case id~id1~id2 =>(id,id1,id2)
         }
     }
 
@@ -25,21 +56,20 @@ object Parsers {
         get[Int]("id") ~
         get[String]("name") ~
         get[String]("img") ~
-        get[Int]("tupe") ~
         get[Int]("level") ~
         get[Int]("cost") ~
         get[Boolean]("weight") ~
-        get[Boolean]("privat")~
+        get[Boolean]("private")~
         get[String]("action")~
         get[String]("slot")~
         get[Boolean]("stack")map{
-            case id~name~img~tupe~level~cost~weight~privat~action~slot~stack => new ItemBase(id,name,img,tupe,level,cost,weight,privat,ItemAction.withName(action),SlotType.withName(slot),stack )
+            case id~name~img~level~cost~weight~privat~action~slot~stack => new ItemBase(id,name,img,level,cost,weight,privat,ItemAction.withName(action),SlotType.withName(slot),stack )
         }
     }
 
     val itemUser: RowParser[ItemUser]={
         get[Int]("id")~
-        get[Int]("item_base")~
+        get[Int]("item_id")~
         get[Int]("amount")map{
             case id~baseId~amount => new ItemUser(id,baseId,amount)
         }
@@ -89,54 +119,50 @@ object Parsers {
 
     }
 
-    val storeSection: RowParser[StoreSection] = {
+    val storeTab: RowParser[StoreTab] = {
         get[Int]("id")~
-        get[String]("name") ~
-        get[String]("items")map{
-            case id~name~section =>
-                val items: Array[ItemBase] =  section.split("_").map(_.toInt).map(id=> Items.getItem(id))
-                StoreSection(id,name,items)
+        get[String]("name") map{
+            case id~name => new StoreTab(id,name)
         }
     }
 
-    val store: RowParser[StoreInfo] = {
+    val store: RowParser[Store] = {
         get[Int]("id")~
-        get[String]("name") ~
-        get[String]("section")map{
-            case id~name~section => StoreInfo(id,name,section.split("_").map(_.toInt))
+        get[String]("name")map{
+            case id~name => new Store(id,name)
         }
     }
 
-    val userAuth: RowParser[(Int, String, String)] = {
+    val playerAuth: RowParser[(Int, String, String, String)] = {
         get[Int]("id") ~
+                get[String]("name") ~
                 get[String]("email") ~
                 get[String]("password") map{
-            case id~mail~password => (id,mail,password)
+            case id~name~mail~password => (id,name,mail,password)
         }
     }
 
-    val userInfo: RowParser[PlayerInfo] = {
+    val playerInfo: RowParser[PlayerInfo] = {
         get[Int]("id") ~
-        get[String]("name") ~
         get[Int]("level") ~
         get[Int]("exp") ~
         get[Int]("location") ~
         get[Int]("money") map{
-            case id~name~level~exp~loc~money =>new PlayerInfo(id,name,level,exp,loc,money)
+            case id~level~exp~loc~money =>new PlayerInfo(id,level,exp,loc,money)
         }
     }
 
-    val userSlot: RowParser[Array[Int]] = {
-        get[Int]("item0") ~
-        get[Int]("item1") ~
-        get[Int]("item2") ~
-        get[Int]("item3") ~
-        get[Int]("item4") ~
-        get[Int]("item5") ~
-        get[Int]("item6") ~
-        get[Int]("item7") ~
-        get[Int]("item8") ~
-        get[Int]("item9") map{
+    val playerSlot: RowParser[Array[Int]] = {
+        get[Int]("slot_1") ~
+        get[Int]("slot_2") ~
+        get[Int]("slot_3") ~
+        get[Int]("slot_4") ~
+        get[Int]("slot_5") ~
+        get[Int]("slot_6") ~
+        get[Int]("slot_7") ~
+        get[Int]("slot_8") ~
+        get[Int]("slot_9") ~
+        get[Int]("slot_10") map{
             case item0~item1~item2~item3~item4~item5~item6~item7~item8~item9 =>
                 Array(item0,item1,item2,item3,item4,item5,item6,item7,item8,item9)
         }

@@ -17,7 +17,7 @@ class SPacketPlayerLocation(action:Action, players: List[Player]) extends Packet
                     player =>
                         buf.writeInt(player.id)
                         buf.writeStringToBuffer(player.name)
-                        buf.writeInt(player.level)
+                        buf.writeInt(player.info.levelIn)
                 }
             case Action.exitInLoc =>
                 players.foreach{

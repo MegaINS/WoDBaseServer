@@ -1,32 +1,18 @@
 package ru.megains.wod.store
 
 import ru.megains.wod.Logger
-import ru.megains.wod.caseclass.StoreInfo
 import ru.megains.wod.entity.player.Player
 import ru.megains.wod.item.ItemBase
 import ru.megains.wod.network.packet.PacketBuffer
 
 import scala.collection.mutable
 
-class Store(storeInfo: StoreInfo) extends Logger[Store]{
+class Store(  val id:Int, val name:String) extends Logger[Store]{
+
+    val sections = new mutable.HashMap[Int,StoreTab]()
 
 
 
-    val name = storeInfo.name
-    val id = storeInfo.id
-    private val sections = new mutable.HashMap[Int,StoreSection]()
-
-
-    def init(): Unit = {
-        storeInfo.storeSection.foreach(id =>{
-            val section = Stores.getStoreSection(id)
-            if(section.id == -1 ){
-                log.info(s"Error init location ${storeInfo.id} ${storeInfo.name} transits id=$id ")
-            }else{
-                sections += id -> section
-            }
-        })
-    }
 
 
     def write(buf: PacketBuffer): Unit = {

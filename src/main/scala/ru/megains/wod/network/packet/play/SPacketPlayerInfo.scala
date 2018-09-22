@@ -14,9 +14,9 @@ class SPacketPlayerInfo(val player: Player) extends PacketWrite{
     override def writePacketData(buf: PacketBuffer): Unit = {
         buf.writeInt(player.id)
         buf.writeStringToBuffer(player.name)
-        buf.writeInt(player.level)
-        buf.writeInt(player.exp)
-        buf.writeInt(player.money)
+        buf.writeInt(player.info.levelIn)
+        buf.writeInt(player.info.expIn)
+        buf.writeInt(player.info.moneyIn)
     }
 
 //    override def processPacket(handler: Nothing): Unit = {

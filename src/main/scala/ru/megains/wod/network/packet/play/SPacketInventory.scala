@@ -1,10 +1,10 @@
 package ru.megains.wod.network.packet.play
 
-import ru.megains.wod.inventory.InventoryBackpack
+import ru.megains.wod.inventory.PlayerBackpack
 import ru.megains.wod.inventory.InventoryType.InventoryType
 import ru.megains.wod.network.packet.{PacketBuffer, PacketWrite}
 
-class SPacketInventory(invType: InventoryType, inventory: InventoryBackpack) extends PacketWrite{
+class SPacketInventory(invType: InventoryType, inventory: PlayerBackpack) extends PacketWrite{
 
 
 

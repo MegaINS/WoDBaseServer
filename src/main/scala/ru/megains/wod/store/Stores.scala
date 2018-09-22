@@ -1,43 +1,55 @@
 package ru.megains.wod.store
 
-import anorm.SQL
-import ru.megains.wod.Parsers
-import ru.megains.wod.db.WoDDatabase
+import ru.megains.wod.Logger
+import ru.megains.wod.db.DBStore
+import ru.megains.wod.item.Items
 
 import scala.collection.mutable
 
-object Stores extends {
+object Stores extends Logger[Stores]{
 
-    val db = WoDDatabase.db
     private val storesMap = new mutable.HashMap[Int,Store]()
-    private val storeSectionsMap = new mutable.HashMap[Int,StoreSection]()
+    private val storeSectionsMap = new mutable.HashMap[Int,StoreTab]()
 
 
     def getStore(id:Int): Store ={
         storesMap.getOrElse(id,default = StoreNone)
     }
-    def getStoreSection(id:Int): StoreSection ={
-        storeSectionsMap.getOrElse(id,default = StoreSection(-1,"",Array.empty))
+    def getStoreSection(id:Int): StoreTab ={
+        storeSectionsMap.getOrElse(id,default = new StoreTab(-1,""))
     }
 
     def load(): Unit ={
-        db.withConnection(implicit c=>{
 
-            val storeSections = SQL(" SELECT * FROM store_section ").as(Parsers.storeSection *)
+
+            val storeSections =  DBStore.loadTab()
             for(storeSection<-storeSections){
                 storeSectionsMap += storeSection.id -> storeSection
             }
 
-
-
-
-            val stores = SQL(s"SELECT * FROM store ").as(Parsers.store *)
-            for(store<-stores){
-                storesMap += store.id -> new Store(store)
+            val storeTabItemBase = DBStore.loadTabIdItemId()
+            for(ti<-storeTabItemBase){
+                storeSectionsMap(ti._1).items += Items.getItem(ti._2)
             }
-            storesMap.values.foreach(_.init())
-        })
+
+            val stores = DBStore.loadStore()
+            for(store<-stores){
+                storesMap += store.id -> store
+            }
+
+            val storeStoreTab = DBStore.loadStoreIdTabId()
+            for(ss<-storeStoreTab){
+                val section = getStoreSection(ss._2)
+                if(section.id == -1 ){
+                    log.info(s"Error init location ${ss._1} ${storesMap(ss._1).name} transits id=${ss._2} ")
+                }else{
+                    storesMap(ss._1).sections +=  section.id -> section
+                }
+
+            }
     }
 
 }
+class Stores
+
 

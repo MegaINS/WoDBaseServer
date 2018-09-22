@@ -2,24 +2,24 @@ package ru.megains.wod.entity.mob
 
 import anorm.SQL
 import ru.megains.wod.Parsers
-import ru.megains.wod.db.WoDDatabase
+import ru.megains.wod.db.Database
 
 import scala.collection.mutable
 
-object Mobs {
+object Mobs extends Database{
 
-    val db = WoDDatabase.db
+
     private val mobsMap = new mutable.HashMap[Int,Mob]()
 
 
-    def getMob(id:Int): Mob ={
-        mobsMap.getOrElse(id,default = null)
+    def getMob(id:Int): Option[Mob] ={
+        mobsMap.get(id)
     }
 
 
     def load(): Unit ={
-        db.withConnection(implicit c=>{
-            val mobs = SQL(s"SELECT * FROM mob ").as(Parsers.mob *)
+        withConnection(implicit c=>{
+            val mobs = SQL(s"SELECT * FROM mob_info ").as(Parsers.mob *)
             for(mob<-mobs){
                 mobsMap += mob.id -> mob
             }

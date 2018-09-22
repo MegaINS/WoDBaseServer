@@ -1,49 +1,26 @@
 package ru.megains.wod.entity.player
 
-import anorm.SQL
-import ru.megains.wod.Parsers
-import ru.megains.wod.db.{Database, WoDDatabase}
-import ru.megains.wod.item.ItemUser
+import ru.megains.wod.db.{DBPlayerBody, DBPlayerItem}
 import ru.megains.wod.entity.player.SlotType.SlotType
+import ru.megains.wod.item.ItemUser
 
 import scala.collection.mutable
 
-class PlayerBody(player: Player) extends {
+class PlayerBody(player: Player) {
 
-
-
-    val db: Database = WoDDatabase.db
-
-    val slots = new mutable.HashMap[SlotType,ItemUser]()
-
-    def load(): Unit ={
-        db.withConnection(implicit c=>{
-
-            val bodyId = SQL(s"SELECT * FROM users_body WHERE id='${player.id}'").as(Parsers.body.single)
-
-            val itemsUser: List[ItemUser] = SQL(
-                s"""
-                SELECT *
-                FROM users_items
-                WHERE id IN ${bodyId.values.mkString("(",",",")")}
-            """).as(Parsers.itemUser *)
-
-            bodyId.foreach{
-               case (slot,id)=>
-                   slots += slot -> itemsUser.find(_.id == id).getOrElse(default = null)
-           }
-        })
-    }
+    val slots:  mutable.HashMap[SlotType, ItemUser] = DBPlayerBody.load(player.id)
 
     def getItemInSlot(slot: SlotType): ItemUser = {
-        slots.getOrElse(slot,default = null)
+        slots(slot)
     }
-    def setSlot(slot: SlotType, value: ItemUser): Unit = {
-        slots(slot) = value
-        val id = if(value ne null) value.id else 0
+    def setSlot(slot: SlotType, item: ItemUser = null): Unit = {
+        slots(slot) = item
+        val itemId = if(item != null) item.id else 0
+        DBPlayerBody.updateSlot(player.id,slot,itemId)
+        if(itemId > 0){
+            DBPlayerItem.updateInventory(itemId,"body")
+        }
 
-        db.withConnection(implicit c =>
-            SQL(s"UPDATE users_body SET ${slot.toString}='$id' WHERE id='${player.id}'").execute()
-        )
     }
+
 }

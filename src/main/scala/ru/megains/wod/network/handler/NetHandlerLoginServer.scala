@@ -1,27 +1,26 @@
 package ru.megains.wod.network.handler
 
 import anorm.SQL
-import ru.megains.wod.db.WoDDatabase
+import ru.megains.wod.db.Database
 import ru.megains.wod.network.NetworkManager
 import ru.megains.wod.network.packet.login.{CPacketLoginStart, SPacketLoginSuccess}
 import ru.megains.wod.{Parsers, WoDServer}
 
-class NetHandlerLoginServer(server: WoDServer, networkManager: NetworkManager) extends INetHandlerLoginServer {
+class NetHandlerLoginServer(server: WoDServer, networkManager: NetworkManager) extends INetHandlerLoginServer with Database {
 
-    var name: String = _
-    val db = WoDDatabase.db
+    //var name: String = _
 
     override def processLoginStart(packetIn: CPacketLoginStart): Unit = {
-        val userEmail:String =  packetIn.email
-        val userPassword:String = packetIn.pass
-        db.withConnection(implicit c=>
-            SQL(s"SELECT * FROM user_auth WHERE email='$userEmail'").as(Parsers.userAuth.singleOpt).getOrElse(default = (0,"","")) match {
-                case (id,mail,password) =>
-                    if (userEmail == mail && userPassword == password){
+        val playerEmail:String =  packetIn.email
+        val playerPassword:String = packetIn.pass
+        withConnection(implicit c=>
+            SQL(s"SELECT * FROM player_auth WHERE email='$playerEmail'").as(Parsers.playerAuth.singleOpt).getOrElse(default = (0,"","","")) match {
+                case (id,name,mail,password) =>
+                    if (playerEmail == mail && playerPassword == password){
                         networkManager.sendPacket(new SPacketLoginSuccess())
-                        server.playerList.initializeConnectionToPlayer(networkManager, id)
+                        server.playerList.initializeConnectionToPlayer(networkManager, id,name)
                     }else{
-                        println(s"Not user $userEmail")
+                        println(s"Not player $playerEmail")
                     }
             }
 

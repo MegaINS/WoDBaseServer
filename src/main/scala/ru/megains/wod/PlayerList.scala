@@ -1,31 +1,30 @@
 package ru.megains.wod
 
 import anorm.SQL
-import ru.megains.wod.db.{Database, WoDDatabase}
+import ru.megains.wod.db.Database
+import ru.megains.wod.entity.player.{Player, PlayerInfo}
 import ru.megains.wod.network.NetworkManager
 import ru.megains.wod.network.handler.NetHandlerPlayServer
-import ru.megains.wod.entity.player.{Player, PlayerInfo}
 
 import scala.collection.mutable
 
-class PlayerList(server: WoDServer) extends Logger[PlayerList]{
+class PlayerList(server: WoDServer) extends Logger[PlayerList] with Database{
 
-    val db: Database = WoDDatabase.db
     val players = new mutable.HashMap[Int,Player]()
 
 
-    def initializeConnectionToPlayer(networkManager: NetworkManager, id: Int): Unit = {
+    def initializeConnectionToPlayer(networkManager: NetworkManager, id: Int,name:String): Unit = {
         log.info(s"Start initialize player id=$id")
         var player:Player = null
         if(players.contains(id)){
             player = players(id)
 
         }else{
-            db.withConnection(implicit c =>{
+            withConnection(implicit c =>{
                 log.info(s"Load player id=$id")
-                val userInfo: PlayerInfo = SQL(s"SELECT * FROM user_info WHERE id='$id'").as(Parsers.userInfo.single)
-                player = new Player(userInfo.id,userInfo.name)
-                player.load(userInfo)
+                val playerInfo: PlayerInfo = SQL(s"SELECT * FROM player_info WHERE id='$id'").as(Parsers.playerInfo.single)
+                player = new Player(id,name)
+                player.load(playerInfo)
                 players += player.id -> player
             })
         }

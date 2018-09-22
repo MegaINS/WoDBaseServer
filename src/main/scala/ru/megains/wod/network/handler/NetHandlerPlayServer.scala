@@ -41,7 +41,7 @@ class NetHandlerPlayServer(server: WoDServer, val networkManager: NetworkManager
             case Action.moveToLcc =>
                 player.location().moveToLocation(id,player)
             case Action.takeOff =>
-                player.takeOff(SlotType(id),packet.value1)
+                player.takeOff(SlotType(id)/*,packet.value1*/)
             case Action.take =>
                 player.take(id)
             case Action.delete =>
@@ -52,7 +52,7 @@ class NetHandlerPlayServer(server: WoDServer, val networkManager: NetworkManager
                 player.location().getStore(id).buyItem(packet.value1,packet.value2,player)
             case Action.attack =>
 
-                val battleId = BattleList.createBattle(player,Mobs.getMob(packet.id))
+                val battleId = BattleList.createBattle(player,Mobs.getMob(packet.id).get)
 
                 server.battleServer.sendPacket(new PCreateBattle(battleId, player.id,EntityType.player,packet.id,EntityType.mob))
 

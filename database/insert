@@ -100,21 +100,25 @@ INSERT INTO mob_info(name, level) VALUES ('Паук',2);
 INSERT INTO mob_info(name, level) VALUES ('Босс',10);
 INSERT INTO mob_info(name, level) VALUES ('МЕГА БОСС',9999);
 
+INSERT INTO mob_stat(mob_id, stat, value) VALUES (1,'hp',100);
 INSERT INTO mob_stat(mob_id, stat, value) VALUES (1,'mhp',100);
 INSERT INTO mob_stat(mob_id, stat, value) VALUES (1,'pov',30);
 INSERT INTO mob_stat(mob_id, stat, value) VALUES (1,'mindam',5);
 INSERT INTO mob_stat(mob_id, stat, value) VALUES (1,'maxdam',10);
 
+INSERT INTO mob_stat(mob_id, stat, value) VALUES (2,'hp',150);
 INSERT INTO mob_stat(mob_id, stat, value) VALUES (2,'mhp',150);
 INSERT INTO mob_stat(mob_id, stat, value) VALUES (2,'pov',60);
 INSERT INTO mob_stat(mob_id, stat, value) VALUES (2,'mindam',9);
 INSERT INTO mob_stat(mob_id, stat, value) VALUES (2,'maxdam',16);
 
+INSERT INTO mob_stat(mob_id, stat, value) VALUES (3,'hp',2000);
 INSERT INTO mob_stat(mob_id, stat, value) VALUES (3,'mhp',2000);
 INSERT INTO mob_stat(mob_id, stat, value) VALUES (3,'pov',100);
 INSERT INTO mob_stat(mob_id, stat, value) VALUES (3,'mindam',20);
 INSERT INTO mob_stat(mob_id, stat, value) VALUES (3,'maxdam',40);
 
+INSERT INTO mob_stat(mob_id, stat, value) VALUES (4,'hp',9999);
 INSERT INTO mob_stat(mob_id, stat, value) VALUES (4,'mhp',9999);
 INSERT INTO mob_stat(mob_id, stat, value) VALUES (4,'pov',99);
 INSERT INTO mob_stat(mob_id, stat, value) VALUES (4,'mindam',59);

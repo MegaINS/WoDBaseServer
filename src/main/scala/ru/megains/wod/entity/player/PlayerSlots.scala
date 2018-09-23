@@ -17,7 +17,6 @@ class PlayerSlots(val player: Player) extends Database {
                 val itemSlot = player.backpack.getItemFromId(id,value)
                 slotsItem(slotId) = itemSlot
                 DBPlayerSlot.update(player.id,slotId,itemSlot.id)
-              //  player.sendPacket(new SPacketActionReturn(Status.success,Action.take,item.id))
                 player.sendPacket(new SPacketSlotUpdate(slotId,itemSlot))
                 return
             }
@@ -32,7 +31,6 @@ class PlayerSlots(val player: Player) extends Database {
                 slotsItem(slotId) = null
                 DBPlayerSlot.update(player.id,slotId,0)
                 player.sendPacket(new SPacketSlotUpdate(slotId))
-
                 player.backpack.addItem(item)
                 //TODO false
 

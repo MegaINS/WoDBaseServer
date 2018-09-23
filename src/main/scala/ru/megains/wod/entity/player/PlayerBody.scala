@@ -3,6 +3,7 @@ package ru.megains.wod.entity.player
 import ru.megains.wod.db.{DBPlayerBody, DBPlayerItem}
 import ru.megains.wod.entity.player.SlotType.SlotType
 import ru.megains.wod.item.ItemUser
+import ru.megains.wod.network.packet.play.SPacketBodyUpdate
 
 import scala.collection.mutable
 
@@ -20,6 +21,7 @@ class PlayerBody(player: Player) {
         if(itemId > 0){
             DBPlayerItem.updateInventory(itemId,"body")
         }
+        player.sendPacket(new SPacketBodyUpdate(slot,item))
 
     }
 

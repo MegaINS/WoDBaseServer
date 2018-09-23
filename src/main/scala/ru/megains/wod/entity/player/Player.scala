@@ -1,21 +1,20 @@
 package ru.megains.wod.entity.player
 
-import ru.megains.wod.Action
-import ru.megains.wod.db.DBPlayerInfo
+import ru.megains.wod.db.{DBPlayerInfo, DBPlayerStat}
 import ru.megains.wod.entity.Entity
 import ru.megains.wod.entity.player.SlotType.SlotType
 import ru.megains.wod.inventory.{InventoryType, PlayerBackpack}
 import ru.megains.wod.location.{Location, Locations}
 import ru.megains.wod.network.handler.INetHandler
+import ru.megains.wod.network.packet.Packet
 import ru.megains.wod.network.packet.play._
-import ru.megains.wod.network.packet.{Packet, Status}
 
 class Player(val id:Int,val name:String) extends Entity {
 
     var connection:INetHandler = _
 
     val info:PlayerInfo = DBPlayerInfo.load(this)
-    val stat:PlayerStat = new PlayerStat(this)
+    val stat:PlayerStat = DBPlayerStat.load(this)
     val backpack = new PlayerBackpack(this)
     val body = new PlayerBody(this)
     val slots = new PlayerSlots(this)
@@ -61,7 +60,6 @@ class Player(val id:Int,val name:String) extends Entity {
                 if(item != null){
                     body.setSlot(slot)
                     backpack.addItem(item)
-                    sendPacket(new SPacketActionReturn(Status.success,Action.takeOff,slot.id))
                 }
         }
     }
@@ -87,7 +85,6 @@ class Player(val id:Int,val name:String) extends Entity {
                           if(body.getItemInSlot(slot)==null){
                               body.setSlot(slot,item)
                               backpack.removeItem(id)
-                              sendPacket(new SPacketActionReturn(Status.success,Action.take,item.id))
                           }
                       }
               }

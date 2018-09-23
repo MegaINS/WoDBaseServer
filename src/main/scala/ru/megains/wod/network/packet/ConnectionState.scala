@@ -80,13 +80,15 @@ object ConnectionState {
             registerServerPacket(classOf[SPacketLocInfo])
             registerServerPacket(classOf[SPacketInventory])
             registerServerPacket(classOf[SPacketBody])
-            registerServerPacket(classOf[SPacketActionReturn])
             registerServerPacket(classOf[SPacketStore])
             registerServerPacket(classOf[SPacketInvUpdate])
             registerServerPacket(classOf[SPacketStartBattle])
             registerServerPacket(classOf[SPacketPlayerLocation])
             registerServerPacket(classOf[SPacketSlots])
             registerServerPacket(classOf[SPacketSlotUpdate])
+
+            registerServerPacket(classOf[SPacketBodyUpdate])
+
         }
 
         {

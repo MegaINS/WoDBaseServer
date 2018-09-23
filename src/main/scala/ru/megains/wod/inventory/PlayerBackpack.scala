@@ -1,11 +1,9 @@
 package ru.megains.wod.inventory
 
-import ru.megains.wod.Action
 import ru.megains.wod.db.DBPlayerItem
 import ru.megains.wod.entity.player.Player
 import ru.megains.wod.item.{ItemBase, ItemUser, Items}
-import ru.megains.wod.network.packet.Status
-import ru.megains.wod.network.packet.play.{SPacketActionReturn, SPacketInvUpdate}
+import ru.megains.wod.network.packet.play.SPacketInvUpdate
 
 import scala.collection.mutable
 
@@ -49,7 +47,7 @@ class PlayerBackpack(player: Player)  {
         items.get(id) match {
             case Some(item) =>
                 items -= id
-                player.sendPacket(new SPacketInvUpdate(InventoryType.backpack,Array(item),10))
+                player.sendPacket(new SPacketInvUpdate(InventoryType.backpack,Array(item),3))
             case _ =>
                 println("Missing item in backpack id ="+id)
         }
@@ -85,34 +83,6 @@ class PlayerBackpack(player: Player)  {
         }
 
     }
-//    def addItem(item: ItemUser):Boolean = {
-//        if (item.itemBase.stack) {
-//            if (containsItemBase(item.itemBase.id)) {
-//                val itemBackpack = items.values.find(_.itemBase.id == item.itemBase.id).get
-//                itemBackpack.amount += item.amount
-//                withConnection(implicit c => {
-//                    SQL(s"""
-//                        UPDATE player_item
-//                        SET amount=${itemBackpack.amount}
-//                        WHERE id='${itemBackpack.id}'
-//                    """).executeUpdate()
-//                })
-//                withConnection(implicit c=> {
-//                    SQL(s"DELETE FROM player_item WHERE id='${item.id}'").execute()
-//                })
-//                player.sendPacket(new SPacketInvUpdate(InventoryType.backpack,Array(itemBackpack),1))
-//                return true
-//            }
-//        }
-//        if (size + 1 <= sizeMax) {
-//            items += item.id -> item
-//            player.sendPacket(new SPacketInvUpdate(InventoryType.backpack,Array(item),0))
-//            return true
-//        }
-//
-//        false
-//    }
-
 
 
     def addItemBase(itemBase:ItemBase,amount:Int = 1): Boolean ={
@@ -149,9 +119,10 @@ class PlayerBackpack(player: Player)  {
 
 
     def deleteItem(id: Int,amount:Int): Unit = {
+        val item = items(id)
         items -= id
         DBPlayerItem.deleteItem(id)
-        player.sendPacket(new SPacketActionReturn(Status.success, Action.delete,id))
+        player.sendPacket(new SPacketInvUpdate(InventoryType.backpack,Array(item),3))
     }
 
 

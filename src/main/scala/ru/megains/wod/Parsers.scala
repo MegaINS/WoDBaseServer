@@ -3,6 +3,8 @@ package ru.megains.wod
 import anorm.SqlParser.get
 import anorm.{RowParser, ~}
 import ru.megains.wod.caseclass.LocInfo
+import ru.megains.wod.entity.EntityStat
+import ru.megains.wod.entity.EntityStat.EntityStat
 import ru.megains.wod.entity.mob.Mob
 import ru.megains.wod.entity.player.SlotType.SlotType
 import ru.megains.wod.entity.player.{PlayerInfo, SlotType}
@@ -12,6 +14,15 @@ import ru.megains.wod.store.{Store, StoreTab}
 import scala.collection.immutable.HashMap
 
 object Parsers {
+    var playerStat:RowParser[(EntityStat,Int)] ={
+        get[String]("stat") ~
+                get[Int]("value")map{
+            case stat~value =>(EntityStat.withName(stat) ,value)
+        }
+
+
+    }
+
     var loc_object : RowParser[(Int,Int,String,Int)] = {
         get[Int]("id") ~
                 get[Int]("loc_id") ~

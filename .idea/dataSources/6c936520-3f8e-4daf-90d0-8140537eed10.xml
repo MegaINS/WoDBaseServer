@@ -1024,7 +1024,7 @@
     </column>
     <column id="255" parent="231" name="slot">
       <Position>10</Position>
-      <DataType>enum(&apos;head&apos;, &apos;gloves&apos;, &apos;leggings&apos;, &apos;boots&apos;, &apos;hauberk&apos;, &apos;belt&apos;, &apos;cuirass&apos;, &apos;shoulders&apos;, &apos;leftHand&apos;, &apos;rightHand&apos;, &apos;none&apos;, &apos;elixir&apos;)|0e</DataType>
+      <DataType>enum(&apos;head&apos;, &apos;gloves&apos;, &apos;leggings&apos;, &apos;boots&apos;, &apos;hauberk&apos;, &apos;belt&apos;, &apos;cuirass&apos;, &apos;shoulders&apos;, &apos;leftHand&apos;, &apos;rightHand&apos;, &apos;twoHanded&apos;, &apos;food&apos;, &apos;none&apos;, &apos;elixir&apos;)|0e</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;none&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>

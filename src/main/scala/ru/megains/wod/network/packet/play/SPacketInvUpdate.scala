@@ -12,6 +12,7 @@ class SPacketInvUpdate(invType:InventoryType,itemsIn:Array[ItemUser],test:Byte) 
 //    }
 
     override def writePacketData(buf: PacketBuffer): Unit = {
+        println( "SPacketInvUpdate "+test)
         buf.writeByte(test)
         buf.writeByte(invType.id)
         buf.writeShort(itemsIn.length)

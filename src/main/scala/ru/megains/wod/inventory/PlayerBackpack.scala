@@ -29,25 +29,19 @@ class PlayerBackpack(player: Player)  {
         items(id).itemBase
     }
 
-    def getItemFromId(id: Int, amount: Int = 1):ItemUser = {
-        val item =  items(id)
-        if(item.amount <= amount){
-            items -= id
-            item
-        }else{
-            item.amount -= amount
-            DBPlayerItem.updateAmount(item.id,item.amount)
-            player.sendPacket(new SPacketInvUpdate(InventoryType.backpack,Array(item),1))
-            Items.createItemPlayer(item.itemBase.id,player.id,amount)
-        }
-    }
 
-
-    def removeItem(id: Int): Unit = {
+    def removeItem(id: Int,value:Int = 1): Unit = {
         items.get(id) match {
             case Some(item) =>
-                items -= id
-                player.sendPacket(new SPacketInvUpdate(InventoryType.backpack,Array(item),3))
+                if(value == item.amount){
+                    items -= id
+                    player.sendPacket(new SPacketInvUpdate(InventoryType.backpack,Array(item),3))
+                }else{
+                    item.amount -= value
+                    DBPlayerItem.updateAmount(item.id,item.amount)
+                    player.sendPacket(new SPacketInvUpdate(InventoryType.backpack,Array(item),1))
+                }
+
             case _ =>
                 println("Missing item in backpack id ="+id)
         }

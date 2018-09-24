@@ -2,7 +2,10 @@ package ru.megains.wod.db
 
 import anorm.SQL
 import ru.megains.wod.Parsers
+import ru.megains.wod.entity.player.SlotType.SlotType
 import ru.megains.wod.item.ItemUser
+
+import scala.collection.mutable
 
 object DBPlayerSlot extends Database {
 
@@ -15,16 +18,16 @@ object DBPlayerSlot extends Database {
                 SELECT *
                 FROM player_slot
                 WHERE id='$playerId'
-            """).as(Parsers.playerSlot.single).foreach(slo => if(slo != -1)openSlot+=1)
+            """).as(Parsers.playerSlot.single).values.foreach(slo => if(slo != -1)openSlot+=1)
         })
         openSlot
     }
 
-    def load(playerId:Int): Array[ItemUser] = {
-        val slotsItem:Array[ItemUser] = new Array[ItemUser](10)
+    def load(playerId:Int):mutable.HashMap[SlotType, ItemUser]= {
+        val slotsItem = new mutable.HashMap[SlotType, ItemUser]
         withConnection(implicit c=>{
 
-            val itemsSlot: Array[Int] = SQL(
+            val itemsSlots = SQL(
                 s"""
                 SELECT *
                 FROM player_slot
@@ -35,23 +38,23 @@ object DBPlayerSlot extends Database {
                 s"""
                 SELECT *
                 FROM player_item
-                WHERE id IN ${itemsSlot.mkString("(",",",")")}
+                WHERE id IN ${itemsSlots.values.mkString("(",",",")")}
             """).as(Parsers.itemUser *)
 
 
-            for (i <- itemsSlot.indices){
-                slotsItem(i) = itemsUser.find(_.id == itemsSlot(i)).getOrElse(default = null)
+            for ( itemsSlot<- itemsSlots){
+                slotsItem += itemsSlot._1 -> itemsUser.find(_.id == itemsSlot._2).getOrElse(default = null)
             }
 
         })
         slotsItem
     }
 
-    def update(playerId:Int, slotId:Int,itemId:Int): Unit ={
+    def update(playerId:Int, slot:String,itemId:Int): Unit ={
         withConnection(implicit c=> {
             SQL(s"""
                     UPDATE player_slot
-                    SET slot_$slotId=$itemId
+                    SET $slot=$itemId
                     WHERE id='$playerId'
                 """).executeUpdate()
         })

@@ -163,21 +163,55 @@ object Parsers {
         }
     }
 
-    val playerSlot: RowParser[Array[Int]] = {
+//    val playerSlot: RowParser[Array[Int]] = {
+//        get[Int]("slot_1") ~
+//        get[Int]("slot_2") ~
+//        get[Int]("slot_3") ~
+//        get[Int]("slot_4") ~
+//        get[Int]("slot_5") ~
+//        get[Int]("slot_6") ~
+//        get[Int]("slot_7") ~
+//        get[Int]("slot_8") ~
+//        get[Int]("slot_9") ~
+//        get[Int]("slot_10") map{
+//            case item0~item1~item2~item3~item4~item5~item6~item7~item8~item9 =>
+//                Array(item0,item1,item2,item3,item4,item5,item6,item7,item8,item9)
+//        }
+//    }
+
+    val playerSlot: RowParser[Map[SlotType, Int]] ={
+
         get[Int]("slot_1") ~
-        get[Int]("slot_2") ~
-        get[Int]("slot_3") ~
-        get[Int]("slot_4") ~
-        get[Int]("slot_5") ~
-        get[Int]("slot_6") ~
-        get[Int]("slot_7") ~
-        get[Int]("slot_8") ~
-        get[Int]("slot_9") ~
-        get[Int]("slot_10") map{
-            case item0~item1~item2~item3~item4~item5~item6~item7~item8~item9 =>
-                Array(item0,item1,item2,item3,item4,item5,item6,item7,item8,item9)
+                get[Int]("slot_2") ~
+                get[Int]("slot_3") ~
+                get[Int]("slot_4") ~
+                get[Int]("slot_5") ~
+                get[Int]("slot_6") ~
+                get[Int]("slot_7") ~
+                get[Int]("slot_8") ~
+                get[Int]("slot_9") ~
+                get[Int]("slot_10") map{
+
+            case  item1~item2~item3~item4~item5~item6~item7~item8~item9~item10 =>
+
+                HashMap[SlotType,Int](
+                    SlotType.elixir1 ->item1,
+                    SlotType.elixir2 ->item2,
+                    SlotType.elixir3 ->item3,
+                    SlotType.elixir4 ->item4,
+                    SlotType.elixir5 ->item5,
+                    SlotType.elixir6 ->item6,
+                    SlotType.elixir7 ->item7,
+                    SlotType.elixir8 ->item8,
+                    SlotType.elixir9 ->item9,
+                    SlotType.elixir10 ->item10
+                )
         }
+
+
     }
+
+
 
     val mob: RowParser[Mob] = {
         get[Int]("id") ~

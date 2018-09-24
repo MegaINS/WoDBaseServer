@@ -105,6 +105,8 @@ CREATE TABLE item_base(
             'shoulders',
             'leftHand',
             'rightHand',
+            'twoHanded',
+            'food',
             'none',
             'elixir') NOT NULL DEFAULT 'none',
   PRIMARY KEY(id)

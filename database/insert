@@ -65,35 +65,82 @@ INSERT INTO store(name) VALUES ('Лавка темных');
 INSERT INTO store(name) VALUES ('Лавка светлых');
 
 
-INSERT INTO store_tab(name) VALUES ('Доспехи');
-INSERT INTO store_tab(name) VALUES ('Доспехи');
+INSERT INTO store_tab(name) VALUES ('Еда');
 INSERT INTO store_tab(name) VALUES ('Зелья');
+INSERT INTO store_tab(name) VALUES ('Доспехи');
+INSERT INTO store_tab(name) VALUES ('Доспехи');
+INSERT INTO store_tab(name) VALUES ('Оружие');
 
 
-INSERT INTO item_base(name, img, level, cost, stack, action, slot)
+INSERT INTO item_base(name, img, level, cost, stack, action, slot)    #1
 VALUES ('Кожаная броня','cuirass1.gif',1,100,0,'take','cuirass');
-INSERT INTO item_base(name, img, level, cost, stack, action, slot)
+INSERT INTO item_base(name, img, level, cost, stack, action, slot)    #2
 VALUES ('Кожаные поножи','leggings1.gif',1,100,0,'take','leggings');
-INSERT INTO item_base(name, img, level, cost, stack, action, slot)
+INSERT INTO item_base(name, img, level, cost, stack, action, slot)    #3
 VALUES ('Кожаные ботинки','boot1.gif',2,200,0,'take','boots');
-INSERT INTO item_base(name, img, level, cost, stack, action, slot)
+INSERT INTO item_base(name, img, level, cost, stack, action, slot)    #4
 VALUES ('Кожаные наплечники','shou1.gif',2,200,0,'take','shoulders');
-INSERT INTO item_base(name, img, level, cost, stack, action, slot)
+INSERT INTO item_base(name, img, level, cost, stack, action, slot)    #5
 VALUES ('Кожаные наручи','glus1.gif',3,300,0,'take','gloves');
-INSERT INTO item_base(name, img, level, cost, stack, action, slot)
+INSERT INTO item_base(name, img, level, cost, stack, action, slot)    #6
 VALUES ('Кожаный шлем','helm1.gif',3,300,0,'take','head');
-INSERT INTO item_base(name, img, level, cost, stack, action, slot)
+INSERT INTO item_base(name, img, level, cost, stack, action, slot)    #7
 VALUES ('Кожаная кольчуга','kolchuc1.gif',4,400,0,'take','hauberk');
-INSERT INTO item_base(name, img, level, cost, stack, action, slot)
+INSERT INTO item_base(name, img, level, cost, stack, action, slot)    #8
 VALUES ('Кожаный пояс','poyas1.gif',4,400,0,'take','belt');
-INSERT INTO item_base(name, img, level, cost, stack, action, slot)
+
+
+
+
+
+INSERT INTO item_base(name, img, level, cost, stack, action, slot)    #9
 VALUES ('Броня новичка','cuirass2.gif',1,100,0,'take','cuirass');
-INSERT INTO item_base(name, img, level, cost, stack, action, slot)
+INSERT INTO item_base(name, img, level, cost, stack, action, slot)    #10
 VALUES ('Поножи новичка','leggings2.gif',1,100,0,'take','leggings');
-INSERT INTO item_base(name, img, level, cost, stack, action, slot)
+INSERT INTO item_base(name, img, level, cost, stack, action, slot)    #11
 VALUES ('Ботинки новичка','boot2.gif',2,200,0,'take','boots');
-INSERT INTO item_base(name, img, level, cost,  action, slot)
-VALUES ('Малое зелье жизни','life1.gif',1,10,'take','elixir');
+INSERT INTO item_base(name, img, level, cost, stack, action, slot)    #12
+VALUES ('Наплечники новичка','glus2.gif',3,300,0,'take','shoulders');
+INSERT INTO item_base(name, img, level, cost, stack, action, slot)    #13
+VALUES ('Шлем новичка','helm2.gif',3,300,0,'take','head');
+INSERT INTO item_base(name, img, level, cost, stack, action, slot)    #14
+VALUES ('Кольчуга новичка','kolchuc2.gif',4,400,0,'take','hauberk');
+
+
+
+
+INSERT INTO item_base(name, img, level, cost, stack, action, slot)    #15
+VALUES ('Правый меч новичка','mech1right.gif',1,100,0,'take','rightHand');
+INSERT INTO item_base(name, img, level, cost, stack, action, slot)    #16
+VALUES ('Левый меч новичка','mech1left.gif',1,100,0,'take','leftHand');
+INSERT INTO item_base(name, img, level, cost, stack, action, slot)    #17
+VALUES ('Щит новичка','shit2.gif',5,500,0,'take','leftHand');
+INSERT INTO item_base(name, img, level, cost, stack, action, slot)    #18
+VALUES ('Кожаный щит','shit1.gif',1,100,0,'take','leftHand');
+INSERT INTO item_base(name, img, level, cost, stack, action, slot)    #19
+VALUES ('Правый топор новичка','topor1right.gif',3,300,0,'take','rightHand');
+INSERT INTO item_base(name, img, level, cost, stack, action, slot)    #20
+VALUES ('Левый топор новичка','topor1left.gif',3,300,0,'take','leftHand');
+INSERT INTO item_base(name, img, level, cost, stack, action, slot)    #21
+VALUES ('Двуручный топор новичка','topordvuh1.gif',5,1000,0,'take','twoHanded');
+
+
+
+INSERT INTO item_base(name, img, level, cost,  action, slot)    #22
+VALUES ('Малое зелье жизни','life1.gif',1,3,'take','elixir');
+INSERT INTO item_base(name, img, level, cost,  action, slot)    #23
+VALUES ('Малый эликсир мощи','bers1.gif',1,1,'take','elixir');
+INSERT INTO item_base(name, img, level, cost,  action, slot)    #24
+VALUES ('Малый эликсир гиганта','gig1.gif',2,10,'take','elixir');
+INSERT INTO item_base(name, img, level, cost,  action, slot)    #25
+VALUES ('Малый эликсир крови','krit1.gif',1,2,'take','elixir');
+INSERT INTO item_base(name, img, level, cost,  action, slot)    #26
+VALUES ('Малый эликсир вампиризма','vamp1.gif',1,1,'take','elixir');
+
+
+INSERT INTO item_base(name, img, level, cost,  action, slot)    #27
+VALUES ('Хлеб','bread.gif',1,1,'use','food');
+
 
 INSERT INTO mob_info(name, level) VALUES ('Крыса',1);
 INSERT INTO mob_info(name, level) VALUES ('Паук',2);
@@ -167,21 +214,51 @@ INSERT INTO loc_object(loc_id, object_type, object_id) VALUES (2,'store',2);
 INSERT INTO loc_object(loc_id, object_type, object_id) VALUES (6,'store',1);
 
 
+
 INSERT INTO store_store_tab(store_id, store_tab_id) VALUES (1,1);
+INSERT INTO store_store_tab(store_id, store_tab_id) VALUES (1,2);
 INSERT INTO store_store_tab(store_id, store_tab_id) VALUES (1,3);
+INSERT INTO store_store_tab(store_id, store_tab_id) VALUES (1,5);
+
+
+INSERT INTO store_store_tab(store_id, store_tab_id) VALUES (2,1);
 INSERT INTO store_store_tab(store_id, store_tab_id) VALUES (2,2);
-INSERT INTO store_store_tab(store_id, store_tab_id) VALUES (2,3);
+INSERT INTO store_store_tab(store_id, store_tab_id) VALUES (2,4);
+INSERT INTO store_store_tab(store_id, store_tab_id) VALUES (2,5);
 
 
-INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (1,1);
-INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (1,2);
-INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (1,3);
-INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (1,4);
-INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (1,5);
-INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (1,6);
-INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (1,7);
-INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (1,8);
-INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (2,9);
-INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (2,10);
-INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (2,11);
-INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (3,12);
+
+
+
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (1,27);
+
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (2,22);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (2,23);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (2,24);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (2,25);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (2,26);
+
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (3,1);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (3,2);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (3,3);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (3,4);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (3,5);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (3,6);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (3,7);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (3,8);
+
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (4,9);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (4,10);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (4,11);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (4,12);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (4,13);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (4,14);
+
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (5,15);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (5,16);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (5,17);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (5,18);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (5,19);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (5,20);
+INSERT INTO store_tab_item_base(store_tab_id,item_base_id) VALUES (5,21);
+

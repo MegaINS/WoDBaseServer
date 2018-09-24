@@ -48,12 +48,24 @@ class Player(val id:Int,val name:String) extends Entity {
         location.enter(this)
     }
     def takeOff(slot: SlotType): Unit = {
+        println(slot.toString)
         slot match {
             case SlotType.none =>
                 throw new Exception("SlotType.none")
-            case SlotType.elixir =>
-                //slots.takeOff(id)
-                println("SlotType.elixir")
+            case SlotType.elixir1 |
+             SlotType.elixir2 |
+             SlotType.elixir3 |
+             SlotType.elixir4 |
+             SlotType.elixir5 |
+             SlotType.elixir6 |
+             SlotType.elixir7 |
+             SlotType.elixir8|
+             SlotType.elixir9 |
+             SlotType.elixir10 =>
+
+
+                slots.takeOff(slot)
+
             case _ =>
 
                 val item = body.getItemInSlot(slot)
@@ -71,10 +83,10 @@ class Player(val id:Int,val name:String) extends Entity {
             case Some(item) =>
               item.slot match{
                   case SlotType.elixir =>
-//                      val value:Int = slots.take(item)
-//                      if(value > 0){
-//                          backpack.removeItem(id,value)
-//                      }
+                      val value:Int = slots.take(item)
+                      if(value > 0){
+                          backpack.removeItem(id,value)
+                      }
                   case SlotType.none =>
                       throw new Exception("SlotType.none")
                   case _ =>

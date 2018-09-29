@@ -3,12 +3,12 @@ package ru.megains.wod.network.packet.play
 import ru.megains.wod.Action
 import ru.megains.wod.Action.Action
 import ru.megains.wod.entity.player.Player
-import ru.megains.wod.network.packet.{PacketBuffer, PacketWrite}
+import ru.megains.wod.network.packet.{PacketBufferS, PacketWrite}
 
 class SPacketPlayerLocation(action:Action, players: List[Player]) extends PacketWrite{
 
 
-    override def writePacketData(buf: PacketBuffer): Unit = {
+    override def writePacketData(buf: PacketBufferS): Unit = {
         buf.writeInt(action.id)
         buf.writeInt(players.length)
         action match {

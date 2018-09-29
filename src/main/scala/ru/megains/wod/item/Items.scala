@@ -3,6 +3,9 @@ package ru.megains.wod.item
 import anorm.SQL
 import ru.megains.wod.Parsers
 import ru.megains.wod.db.Database
+import ru.megains.wod.item.ItemParam.ItemParam
+
+import scala.collection.mutable
 
 object Items extends Database{
 
@@ -23,7 +26,18 @@ object Items extends Database{
             }
         }
     }
+    def loadParams(id: Int): mutable.HashMap[ItemParam, Int] = {
+        val itemParams: mutable.HashMap[ItemParam,Int] = new mutable.HashMap[ItemParam,Int]()
+        withConnection { implicit c =>
+            val itemParam = SQL(s"SELECT * FROM item_param WHERE item_id='$id'").as(Parsers.itemParam *)
+            itemParam.foreach{
+                case (param,value)=>
+                    itemParams +=  param -> value
 
+            }
+        }
+        itemParams
+    }
     def createItemPlayer(itemId:Int,playerId:Int,amount:Int = 1): ItemUser ={
         withConnection { implicit c =>
             val id:Option[Long] = SQL(

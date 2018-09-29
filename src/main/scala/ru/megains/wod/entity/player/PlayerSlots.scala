@@ -2,7 +2,7 @@ package ru.megains.wod.entity.player
 
 import ru.megains.wod.db.{DBPlayerItem, DBPlayerSlot, Database}
 import ru.megains.wod.entity.player.SlotType.SlotType
-import ru.megains.wod.item.{ItemUser, Items}
+import ru.megains.wod.item.{ItemParam, ItemUser, Items}
 import ru.megains.wod.network.packet.play.SPacketSlotUpdate
 
 import scala.collection.mutable
@@ -19,7 +19,7 @@ class PlayerSlots(val player: Player) extends Database {
         for(id <- 1 to openSlots ){
             val slotType = SlotType.withName("slot_"+id)
             if(slotsItem(slotType) == null){
-                value+=1
+                value = itemUser.amount.min(itemUser.itemBase.itemParams(ItemParam.slotSize))
                 if(itemUser.amount>1){
                     item = Items.createItemPlayer(itemUser.itemBase.id,player.id,value)
 

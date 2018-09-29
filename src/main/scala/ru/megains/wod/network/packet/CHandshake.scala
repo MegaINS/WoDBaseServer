@@ -13,7 +13,7 @@ class CHandshake() extends PacketRead[NetHandlerHandshakeTCP] {
         this.connectionState = connectionState
     }
 
-    override def readPacketData(packetBuffer: PacketBuffer): Unit = {
+    override def readPacketData(packetBuffer: PacketBufferS): Unit = {
         connectionState = ConnectionState.getFromId(packetBuffer.readByte())
     }
 

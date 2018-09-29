@@ -2,7 +2,7 @@ package ru.megains.wod.network.packet.play
 
 import ru.megains.wod.inventory.InventoryType.InventoryType
 import ru.megains.wod.item.ItemUser
-import ru.megains.wod.network.packet.{PacketBuffer, PacketWrite}
+import ru.megains.wod.network.packet.{PacketBufferS, PacketWrite}
 
 class SPacketInvUpdate(invType:InventoryType,itemsIn:Array[ItemUser],test:Byte) extends PacketWrite{
 
@@ -11,7 +11,7 @@ class SPacketInvUpdate(invType:InventoryType,itemsIn:Array[ItemUser],test:Byte) 
 //
 //    }
 
-    override def writePacketData(buf: PacketBuffer): Unit = {
+    override def writePacketData(buf: PacketBufferS): Unit = {
         println( "SPacketInvUpdate "+test)
         buf.writeByte(test)
         buf.writeByte(invType.id)

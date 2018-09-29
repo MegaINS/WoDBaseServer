@@ -1,13 +1,13 @@
 package ru.megains.wod.network.packet.play
 
 import ru.megains.wod.entity.player.Player
-import ru.megains.wod.network.packet.{PacketBuffer, PacketWrite}
+import ru.megains.wod.network.packet.{PacketBufferS, PacketWrite}
 
 class SPacketPlayerInfo(val player: Player) extends PacketWrite{
 
 
 
-    override def writePacketData(buf: PacketBuffer): Unit = {
+    override def writePacketData(buf: PacketBufferS): Unit = {
         buf.writeInt(player.id)
         buf.writeStringToBuffer(player.name)
         buf.writeInt(player.info.levelIn)

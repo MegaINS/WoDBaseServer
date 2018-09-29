@@ -8,12 +8,20 @@ import ru.megains.wod.entity.EntityStat.EntityStat
 import ru.megains.wod.entity.mob.Mob
 import ru.megains.wod.entity.player.SlotType.SlotType
 import ru.megains.wod.entity.player.{PlayerInfo, SlotType}
+import ru.megains.wod.item.ItemParam.ItemParam
 import ru.megains.wod.item._
 import ru.megains.wod.store.{Store, StoreTab}
 
 import scala.collection.immutable.HashMap
 
 object Parsers {
+    val itemParam : RowParser[(ItemParam,Int)] = {
+        get[String]("param") ~
+                get[Int]("value")  map{
+            case param~value =>(ItemParam.withName(param) ,value)
+        }
+    }
+
     var playerStat:RowParser[(EntityStat,Int)] ={
         get[String]("stat") ~
                 get[Int]("value")map{

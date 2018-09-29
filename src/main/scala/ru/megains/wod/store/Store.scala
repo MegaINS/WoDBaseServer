@@ -3,7 +3,7 @@ package ru.megains.wod.store
 import ru.megains.wod.Logger
 import ru.megains.wod.entity.player.Player
 import ru.megains.wod.item.ItemBase
-import ru.megains.wod.network.packet.PacketBuffer
+import ru.megains.wod.network.packet.PacketBufferS
 
 import scala.collection.mutable
 
@@ -15,7 +15,7 @@ class Store(  val id:Int, val name:String) extends Logger[Store]{
 
 
 
-    def write(buf: PacketBuffer): Unit = {
+    def write(buf: PacketBufferS): Unit = {
         buf.writeStringToBuffer(name)
         buf.writeByte(id)
         buf.writeByte(sections.size)
@@ -33,7 +33,7 @@ class Store(  val id:Int, val name:String) extends Logger[Store]{
         sections.values.foreach{
             section =>  section.items.find(_.id == id).foreach(i=>itemBuy =i)
         }
-        player.backpack.addItemBase(itemBuy)
+        player.backpack.addItemBase(itemBuy,value)
         //TODO money
     }
 }

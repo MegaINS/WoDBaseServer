@@ -142,6 +142,37 @@ INSERT INTO item_base(name, img, level, cost,  action, slot)    #27
 VALUES ('Хлеб','bread.gif',1,1,'use','food');
 
 
+INSERT INTO item_param(item_id, param, value)
+VALUES (22,'hp',25);
+INSERT INTO item_param(item_id, param, value)
+VALUES (22,'slotsize',1);
+INSERT INTO item_param(item_id, param, value)
+VALUES (22,'timeact',2);
+INSERT INTO item_param(item_id, param, value)
+VALUES (23,'pov',30);
+INSERT INTO item_param(item_id, param, value)
+VALUES (23,'slotsize',6);
+INSERT INTO item_param(item_id, param, value)
+VALUES (24,'hp',30);
+INSERT INTO item_param(item_id, param, value)
+VALUES (24,'slotsize',1);
+INSERT INTO item_param(item_id, param, value)
+VALUES (25,'krit',100);
+INSERT INTO item_param(item_id, param, value)
+VALUES (25,'slotsize',3);
+INSERT INTO item_param(item_id, param, value)
+VALUES (26,'pov',20);
+INSERT INTO item_param(item_id, param, value)
+VALUES (26,'vamp',50);
+INSERT INTO item_param(item_id, param, value)
+VALUES (26,'slotsize',4);
+
+
+INSERT INTO item_param(item_id, param, value)
+VALUES (27,'hp',100);
+
+
+
 INSERT INTO mob_info(name, level) VALUES ('Крыса',1);
 INSERT INTO mob_info(name, level) VALUES ('Паук',2);
 INSERT INTO mob_info(name, level) VALUES ('Босс',10);

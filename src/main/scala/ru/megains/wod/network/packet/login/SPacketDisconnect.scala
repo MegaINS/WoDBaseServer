@@ -3,7 +3,7 @@ package ru.megains.wod.network.packet.login
 import java.io.IOException
 
 import ru.megains.wod.network.handler.INetHandler
-import ru.megains.wod.network.packet.{PacketBuffer, PacketWrite}
+import ru.megains.wod.network.packet.{PacketBufferS, PacketWrite}
 
 class SPacketDisconnect() extends PacketWrite {
 
@@ -18,7 +18,7 @@ class SPacketDisconnect() extends PacketWrite {
       * Reads the raw packet data from the data stream.
       */
     @throws[IOException]
-    def readPacketData(buf: PacketBuffer) {
+    def readPacketData(buf: PacketBufferS) {
         this.reason = buf.readStringFromBuffer(32767)
     }
 
@@ -26,7 +26,7 @@ class SPacketDisconnect() extends PacketWrite {
       * Writes the raw packet data to the data stream.
       */
     @throws[IOException]
-    def writePacketData(buf: PacketBuffer) {
+    def writePacketData(buf: PacketBufferS) {
         buf.writeStringToBuffer(reason)
     }
 

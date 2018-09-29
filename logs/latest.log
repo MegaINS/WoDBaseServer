@@ -1,4 +1,37 @@
-[00:06:17:301] [nioEventLoopGroup-0-0/INFO]: exceptionCaught
+[23:04:45:427] [main/INFO]: Start WoDServer
+[23:04:45:436] [main/INFO]: Start GameLogicHandler
+[23:04:45:521] [main/INFO]: Load mobs
+[23:04:46:301] [main/INFO]: Load stores
+[23:04:46:428] [main/INFO]: Load locations
+[23:04:46:438] [main/INFO]: Start NetworkSystem
+[23:05:01:614] [nioEventLoopGroup-0-2/INFO]: Соединение установлено
+[23:05:01:685] [nioEventLoopGroup-0-2/INFO]: Decoder HANDSHAKING, packet CHandshake, id 0, size 3
+[23:05:01:685] [nioEventLoopGroup-0-2/INFO]: Decoder LOGIN, packet CPacketLoginStart, id 0, size 22
+[23:05:01:691] [pool-2-thread-4/INFO]: Start initialize player id=1
+[23:05:01:692] [pool-2-thread-4/INFO]: Load player id=1
+[23:05:01:714] [nioEventLoopGroup-0-2/INFO]: Encoder LOGIN, packet SPacketLoginSuccess, id 1, size 2
+[23:05:01:736] [pool-2-thread-4/INFO]: End initialize player id=1 name=Test_1
+[23:05:01:778] [nioEventLoopGroup-0-2/INFO]: Encoder PLAY, packet SPacketPlayerInfo, id 1, size 34
+[23:05:01:779] [nioEventLoopGroup-0-2/INFO]: Encoder PLAY, packet SPacketInventory, id 3, size 5
+[23:05:01:782] [nioEventLoopGroup-0-2/INFO]: Encoder PLAY, packet SPacketBody, id 4, size 3
+[23:05:01:783] [nioEventLoopGroup-0-2/INFO]: Encoder PLAY, packet SPacketSlots, id 9, size 10
+[23:05:01:784] [nioEventLoopGroup-0-2/INFO]: Encoder PLAY, packet SPacketLocInfo, id 2, size 200
+[23:05:01:785] [nioEventLoopGroup-0-2/INFO]: Encoder PLAY, packet SPacketPlayerLocation, id 8, size 10
+[23:05:01:785] [nioEventLoopGroup-0-2/INFO]: Encoder PLAY, packet SPacketPlayerLocation, id 8, size 26
+[23:05:06:197] [nioEventLoopGroup-0-0/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:05:20:125] [nioEventLoopGroup-0-1/INFO]: Соединение установлено
+[23:05:20:206] [nioEventLoopGroup-0-1/INFO]: Decoder HANDSHAKING, packet CHandshake, id 0, size 3
+[23:05:20:206] [nioEventLoopGroup-0-1/INFO]: Connect Battle server
+[23:05:21:037] [nioEventLoopGroup-0-0/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:05:21:039] [nioEventLoopGroup-0-1/INFO]: Encoder BATTLE_SERVER, packet PCreateBattle, id 0, size 16
+[23:05:21:111] [nioEventLoopGroup-0-1/INFO]: Decoder BATTLE_SERVER, packet PBattleStatus, id 0, size 7
+[23:05:21:113] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketStartBattle, id 7, size 6
+[23:05:56:183] [nioEventLoopGroup-0-0/INFO]: Decoder PLAY, packet CPacketAction, id 0, size 15
+[23:05:56:184] [nioEventLoopGroup-0-1/INFO]: Encoder BATTLE_SERVER, packet PCreateBattle, id 0, size 16
+[23:05:56:265] [nioEventLoopGroup-0-1/INFO]: Decoder BATTLE_SERVER, packet PBattleStatus, id 0, size 7
+[23:05:56:266] [nioEventLoopGroup-0-0/INFO]: Encoder PLAY, packet SPacketStartBattle, id 7, size 6
+[23:06:29:771] [nioEventLoopGroup-0-4/INFO]: Соединение разорвано
+[23:07:53:264] [nioEventLoopGroup-0-1/INFO]: exceptionCaught
 java.io.IOException: Удаленный хост принудительно разорвал существующее подключение
 	at sun.nio.ch.SocketDispatcher.read0(Native Method) ~[?:1.8.0_151]
 	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:43) ~[?:1.8.0_151]
@@ -20,5 +53,5 @@ java.io.IOException: Удаленный хост принудительно ра
 	at io.netty.util.internal.chmv8.ForkJoinPool.scan(ForkJoinPool.java:1706) [netty-all-5.0.0.Alpha2.jar:5.0.0.Alpha2]
 	at io.netty.util.internal.chmv8.ForkJoinPool.runWorker(ForkJoinPool.java:1661) [netty-all-5.0.0.Alpha2.jar:5.0.0.Alpha2]
 	at io.netty.util.internal.chmv8.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:126) [netty-all-5.0.0.Alpha2.jar:5.0.0.Alpha2]
-[00:06:17:306] [nioEventLoopGroup-0-0/INFO]: [Battle Server, exceptionCaught] lost connection: {}
-[00:06:17:306] [nioEventLoopGroup-0-0/INFO]: Соединение разорвано
+[23:07:53:271] [nioEventLoopGroup-0-1/INFO]: [Battle Server, exceptionCaught] lost connection: {}
+[23:07:53:271] [nioEventLoopGroup-0-1/INFO]: Соединение разорвано

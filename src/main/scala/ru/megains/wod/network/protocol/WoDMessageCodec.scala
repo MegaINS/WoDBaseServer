@@ -8,7 +8,7 @@ import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ByteToMessageCodec
 import ru.megains.wod.Logger
 import ru.megains.wod.network.NetworkManager
-import ru.megains.wod.network.packet.{ConnectionState, PacketBuffer, PacketWrite}
+import ru.megains.wod.network.packet.{ConnectionState, PacketBufferS, PacketWrite}
 
 
 class WoDMessageCodec extends ByteToMessageCodec[PacketWrite] with Logger[WoDMessageCodec]{
@@ -17,7 +17,7 @@ class WoDMessageCodec extends ByteToMessageCodec[PacketWrite] with Logger[WoDMes
     override def encode(ctx: ChannelHandlerContext, msg: PacketWrite, out: ByteBuf): Unit = {
 
         val id = ctx.pipeline().channel().attr(NetworkManager.PROTOCOL_ATTRIBUTE_KEY).get().getServerPacketId(msg.getClass)
-        val buffer = new PacketBuffer(out)
+        val buffer = new PacketBufferS(out)
 
         buffer.writeShort(id)
         msg.writePacketData(buffer)
@@ -30,7 +30,7 @@ class WoDMessageCodec extends ByteToMessageCodec[PacketWrite] with Logger[WoDMes
     override def decode(ctx: ChannelHandlerContext, in: ByteBuf, out: util.List[AnyRef]): Unit = {
         val size = in.readableBytes()
         if (size != 0) {
-            val buffer = new PacketBuffer(in)
+            val buffer = new PacketBufferS(in)
             val id = buffer.readShort()
 
             val packet = ctx.pipeline().channel().attr(NetworkManager.PROTOCOL_ATTRIBUTE_KEY).get().getClientPacket(id)

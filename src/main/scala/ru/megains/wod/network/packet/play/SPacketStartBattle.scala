@@ -1,6 +1,6 @@
 package ru.megains.wod.network.packet.play
 
-import ru.megains.wod.network.packet.{PacketBuffer, PacketWrite}
+import ru.megains.wod.network.packet.{PacketBufferS, PacketWrite}
 
 class SPacketStartBattle(id:Int) extends PacketWrite{
 
@@ -9,7 +9,7 @@ class SPacketStartBattle(id:Int) extends PacketWrite{
 //
 //    }
 
-    override def writePacketData(buf: PacketBuffer): Unit = {
+    override def writePacketData(buf: PacketBufferS): Unit = {
         buf.writeInt(id)
     }
 

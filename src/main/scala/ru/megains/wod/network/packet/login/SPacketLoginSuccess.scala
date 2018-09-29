@@ -1,6 +1,6 @@
 package ru.megains.wod.network.packet.login
 
-import ru.megains.wod.network.packet.{PacketBuffer, PacketWrite}
+import ru.megains.wod.network.packet.{PacketBufferS, PacketWrite}
 
 class SPacketLoginSuccess extends PacketWrite {
 
@@ -9,7 +9,7 @@ class SPacketLoginSuccess extends PacketWrite {
 //
 //    }
 
-    override def writePacketData(packetBuffer: PacketBuffer): Unit = {
+    override def writePacketData(packetBuffer: PacketBufferS): Unit = {
 
     }
 

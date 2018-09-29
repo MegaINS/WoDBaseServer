@@ -3,7 +3,7 @@ package ru.megains.wod.location
 import ru.megains.wod.caseclass.LocInfo
 import ru.megains.wod.entity.mob.Mob
 import ru.megains.wod.entity.player.Player
-import ru.megains.wod.network.packet.PacketBuffer
+import ru.megains.wod.network.packet.PacketBufferS
 import ru.megains.wod.network.packet.play.{SPacketPlayerLocation, SPacketStore}
 import ru.megains.wod.store.Store
 import ru.megains.wod.{Action, Logger}
@@ -65,7 +65,7 @@ class Location(info: LocInfo) extends Logger[Location]{
         players.values.foreach(_.sendPacket(new SPacketPlayerLocation(Action.exitInLoc,List(player))))
     }
 
-    def write(buf: PacketBuffer): Unit ={
+    def write(buf: PacketBufferS): Unit ={
         buf.writeStringToBuffer(name)
         buf.writeByte(transits.size)
         transits.foreach{

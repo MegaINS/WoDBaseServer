@@ -125,6 +125,20 @@ CREATE TABLE player_item(
   FOREIGN KEY(item_id) REFERENCES item_base(id) ON DELETE CASCADE
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
+
+CREATE TABLE item_param(
+  id INT NOT NULL AUTO_INCREMENT,
+  item_id INT NOT NULL,
+  param ENUM('hp','pov','mindam','maxdam','int', 'pro', 'agi','vamp','krit','slotsize','timeact') NOT NULL,
+  value INT NOT NULL,
+  PRIMARY KEY(id),
+  KEY(item_id),
+  UNIQUE KEY item_param(item_id,param),
+  FOREIGN KEY(item_id) REFERENCES item_base(id) ON DELETE CASCADE
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+
+
 CREATE TABLE location (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL,

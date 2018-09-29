@@ -1,7 +1,7 @@
 package ru.megains.wod.network.packet.play
 
 import ru.megains.wod.location.Location
-import ru.megains.wod.network.packet.{PacketBuffer, PacketWrite}
+import ru.megains.wod.network.packet.{PacketBufferS, PacketWrite}
 
 class SPacketLocInfo(loc:Location) extends PacketWrite{
 
@@ -11,7 +11,7 @@ class SPacketLocInfo(loc:Location) extends PacketWrite{
 //
 //    }
 
-    override def writePacketData(buf: PacketBuffer): Unit = {
+    override def writePacketData(buf: PacketBufferS): Unit = {
         loc.write(buf)
     }
 

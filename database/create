@@ -108,7 +108,12 @@ CREATE TABLE item_base(
             'twoHanded',
             'food',
             'none',
-            'elixir') NOT NULL DEFAULT 'none',
+            'elixir',
+            'gig',
+            'vamp',
+            'heal',
+            'mosh',
+            'krit') NOT NULL DEFAULT 'none',
   PRIMARY KEY(id)
 )ENGINE=INNODB DEFAULT CHARSET=utf8;
 

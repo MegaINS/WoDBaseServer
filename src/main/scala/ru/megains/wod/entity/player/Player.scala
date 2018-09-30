@@ -82,7 +82,12 @@ class Player(val id:Int,val name:String) extends Entity {
         optItem match {
             case Some(item) =>
               item.slot match{
-                  case SlotType.elixir =>
+                  case SlotType.elixir |
+                       SlotType.gig |
+                       SlotType.heal |
+                       SlotType.krit |
+                       SlotType.mosh |
+                       SlotType.vamp =>
                       val value:Int = slots.take(item)
                       if(value > 0){
                           backpack.removeItem(id,value)

@@ -127,15 +127,19 @@ VALUES ('Двуручный топор новичка','topordvuh1.gif',5,1000,0
 
 
 INSERT INTO item_base(name, img, level, cost,  action, slot)    #22
-VALUES ('Малое зелье жизни','life1.gif',1,3,'take','elixir');
+VALUES ('Малое зелье жизни','life1.gif',1,3,'take','heal');
 INSERT INTO item_base(name, img, level, cost,  action, slot)    #23
-VALUES ('Малый эликсир мощи','bers1.gif',1,1,'take','elixir');
+VALUES ('Малый эликсир мощи','bers1.gif',1,1,'take','mosh');
 INSERT INTO item_base(name, img, level, cost,  action, slot)    #24
-VALUES ('Малый эликсир гиганта','gig1.gif',2,10,'take','elixir');
+VALUES ('Малый эликсир гиганта','gig1.gif',2,10,'take','gig');
 INSERT INTO item_base(name, img, level, cost,  action, slot)    #25
-VALUES ('Малый эликсир крови','krit1.gif',1,2,'take','elixir');
+VALUES ('Малый эликсир крови','krit1.gif',1,2,'take','krit');
 INSERT INTO item_base(name, img, level, cost,  action, slot)    #26
-VALUES ('Малый эликсир вампиризма','vamp1.gif',1,1,'take','elixir');
+VALUES ('Малый эликсир вампиризма','vamp1.gif',1,1,'take','vamp');
+
+
+
+
 
 
 INSERT INTO item_base(name, img, level, cost,  action, slot)    #27

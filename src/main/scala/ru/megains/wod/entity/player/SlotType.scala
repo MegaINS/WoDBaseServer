@@ -32,7 +32,11 @@ object SlotType extends Enumeration{
 
     val food = Value("food")
 
-
+    val gig = Value("gig")
+    val vamp = Value("vamp")
+    val heal = Value("heal")
+    val mosh = Value("mosh")
+    val krit = Value("krit")
 
 
 

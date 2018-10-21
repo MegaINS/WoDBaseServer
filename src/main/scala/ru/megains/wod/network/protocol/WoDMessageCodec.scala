@@ -17,14 +17,21 @@ class WoDMessageCodec extends ByteToMessageCodec[PacketWrite] with Logger[WoDMes
     override def encode(ctx: ChannelHandlerContext, msg: PacketWrite, out: ByteBuf): Unit = {
 
         val id = ctx.pipeline().channel().attr(NetworkManager.PROTOCOL_ATTRIBUTE_KEY).get().getServerPacketId(msg.getClass)
-        val buffer = new PacketBufferS(out)
 
-        buffer.writeShort(id)
-        msg.writePacketData(buffer)
-        val size = out.readableBytes()
-        val name = ConnectionState.getFromPacket(msg).name
-        val packetName = msg.getClass.getSimpleName
-        log.info(s"Encoder $name, packet $packetName, id $id, size $size")
+        id match {
+            case Some(value)=>
+                val buffer = new PacketBufferS(out)
+                buffer.writeShort(value)
+                msg.writePacketData(buffer)
+                val size = out.readableBytes()
+                val name = ConnectionState.getFromPacket(msg).name
+                val packetName = msg.getClass.getSimpleName
+                log.info(s"Encoder $name, packet $packetName, id $value, size $size")
+            case None =>
+                throw new IOException("Bad packet class " + msg.getClass)
+        }
+
+
     }
 
     override def decode(ctx: ChannelHandlerContext, in: ByteBuf, out: util.List[AnyRef]): Unit = {
@@ -33,19 +40,21 @@ class WoDMessageCodec extends ByteToMessageCodec[PacketWrite] with Logger[WoDMes
             val buffer = new PacketBufferS(in)
             val id = buffer.readShort()
 
-            val packet = ctx.pipeline().channel().attr(NetworkManager.PROTOCOL_ATTRIBUTE_KEY).get().getClientPacket(id)
+            val packetOpt = ctx.pipeline().channel().attr(NetworkManager.PROTOCOL_ATTRIBUTE_KEY).get().getClientPacket(id)
 
-            if (packet == null) throw new IOException("Bad packet id " + id)
-            val name = ConnectionState.getFromPacket(packet).name
+            packetOpt match {
+                case Some(packet)=>
+                    val name = ConnectionState.getFromPacket(packet).name
+                    val packetName = packet.getClass.getSimpleName
+                    log.info(s"Decoder $name, packet $packetName, id $id, size $size")
+                    packet.readPacketData(buffer)
+                    if (in.readableBytes > 0) throw new IOException("Packet was larger than I expected, found " + in.readableBytes + " bytes extra whilst reading packet " + id)
+                    else out.add(packet)
+                case None =>
+                    throw new IOException("Bad packet id " + id)
+            }
 
 
-            val packetName = packet.getClass.getSimpleName
-
-            log.info(s"Decoder $name, packet $packetName, id $id, size $size")
-            packet.readPacketData(buffer)
-
-            if (in.readableBytes > 0) throw new IOException("Packet was larger than I expected, found " + in.readableBytes + " bytes extra whilst reading packet " + id)
-            else out.add(packet)
 
         }
     }

@@ -20,14 +20,15 @@ sealed abstract class ConnectionState(val name: String, val id: Int) {
     def registerClientPacket(packet: Class[_ <: PacketRead[_]]): Unit = {
         clientPacketId += clientPacketId.size -> packet
     }
-    def getServerPacketId(packet: Class[_ <: PacketWrite]): Int = {
-        serverIdPacket(packet)
+    def getServerPacketId(packet: Class[_ <: PacketWrite]): Option[Int] = {
+        serverIdPacket.get(packet)
     }
 
-
-    def getClientPacket(id: Int): PacketRead[_] = {
-        val packet = clientPacketId(id)
-        if (packet ne null) packet.newInstance() else null.asInstanceOf[PacketRead[_]]
+    def getClientPacket(id: Int): Option[PacketRead[_]] = {
+        clientPacketId(id) match {
+            case null => None
+            case packet => Some(packet.newInstance())
+        }
     }
 
 }
@@ -56,11 +57,6 @@ object ConnectionState {
 
     case object STATUS extends ConnectionState("STATUS", 1) {
         registerServerPacket(classOf[SPacketDisconnect])
-      // registerPacket(PacketDirection.CLIENTBOUND, classOf[SPacketPong])
-      //  registerPacket(PacketDirection.CLIENTBOUND, classOf[SPacketServerInfo])
-
-      //  registerPacket(PacketDirection.SERVERBOUND, classOf[CPacketPing])
-      //  registerPacket(PacketDirection.SERVERBOUND, classOf[CPacketServerQuery])
     }
 
     case object LOGIN extends ConnectionState("LOGIN", 2) {

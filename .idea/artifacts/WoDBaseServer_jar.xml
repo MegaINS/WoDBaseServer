@@ -1,0 +1,30 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="WoDBaseServer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/WoDBaseServer_jar</output-path>
+    <root id="archive" name="WoDBaseServer.jar">
+      <element id="module-output" name="WoDBaseServer" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/mysql/mysql-connector-java/jars/mysql-connector-java-5.1.41.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.9.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/com.typesafe.play/anorm_2.12/jars/anorm_2.12-2.5.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/org.scala-lang.modules/scala-parser-combinators_2.12/bundles/scala-parser-combinators_2.12-1.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/org.slf4j/slf4j-nop/jars/slf4j-nop-1.7.25.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/org.scalikejdbc/scalikejdbc_2.12/jars/scalikejdbc_2.12-3.3.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.7.25.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/commons-logging/commons-logging/jars/commons-logging-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/org.joda/joda-convert/jars/joda-convert-1.8.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/org.scalikejdbc/scalikejdbc-interpolation_2.12/jars/scalikejdbc-interpolation_2.12-3.3.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/org.apache.logging.log4j/log4j-api/jars/log4j-api-2.8.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/org.apache.commons/commons-dbcp2/jars/commons-dbcp2-2.5.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/org.scalikejdbc/scalikejdbc-core_2.12/jars/scalikejdbc-core_2.12-3.3.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/com.typesafe.play/anorm-tokenizer_2.12/jars/anorm-tokenizer_2.12-2.5.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/org.scalikejdbc/scalikejdbc-interpolation-macro_2.12/jars/scalikejdbc-interpolation-macro_2.12-3.3.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/org.apache.commons/commons-pool2/jars/commons-pool2-2.6.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/org.apache.logging.log4j/log4j-core/jars/log4j-core-2.8.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/org.scala-lang.modules/scala-collection-compat_2.12/bundles/scala-collection-compat_2.12-0.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/com.jsuereth/scala-arm_2.12/jars/scala-arm_2.12-2.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.sbt/boot/scala-2.12.6/lib/scala-reflect.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.sbt/boot/scala-2.12.6/lib/scala-library.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/io.netty/netty-all/jars/netty-all-5.0.0.Alpha2.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
